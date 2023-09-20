@@ -1,0 +1,38 @@
+name: CI_action
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]        
+  merge_group:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+    strategy: 
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: frontend/
+
+      - name: Run Tests
+        run: npm test
+        working-directory: frontend/
+
+      - name: Build
+        run: npm run build
+        working-directory: frontend/
