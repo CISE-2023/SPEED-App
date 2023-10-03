@@ -2,7 +2,7 @@ import NavBar from "./navbar/NavBar";
 import NavItem from "./navbar/NavItem";
 
 const PopulatedNavBar = () => {
-  let accType;
+  let accType = "moderator";
 
   return (
     <NavBar>
