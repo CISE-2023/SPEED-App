@@ -1,3 +1,15 @@
+@font-face {
+    font-family: "Inter";
+    src: local("inter-regular"),
+    url("./fonts/Inter-Regular.ttf") format("truetype");
+  }
+
+.app {
+    background-image: url('./images/background.svg');
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
 .form {
     display: flex;
     flex-direction: column;
