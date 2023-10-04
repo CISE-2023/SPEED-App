@@ -1,14 +1,20 @@
 .heading{
+    font-family: 'Inter';
+    font-style: normal;
     font-size: 100px;
     color: white;
 }
 
 .subheading{
+    font-family: 'Inter';
+    font-style: normal;
     font-size: 50px;
     color:white;
 }
 
 .text {
+    font-family: 'Inter';
+    font-style: normal;
     font-size: 30px;
     color: white;
 }

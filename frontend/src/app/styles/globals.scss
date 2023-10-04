@@ -10,6 +10,28 @@
     min-height: 100vh;
 }
 
+.page {
+    margin-top: 2.5vh;
+    width: 80vw;
+    height: 84vh;
+    margin-top: 10vh;
+    margin: 3vh auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.heading {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 90px;
+    margin-top: 5vh;
+    color: #38729D;
+    letter-spacing: 0.15em;
+    
+}
+
 .form {
     display: flex;
     flex-direction: column;
