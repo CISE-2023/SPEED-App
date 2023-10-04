@@ -1,7 +1,11 @@
+"use client";
+
 import './styles/globals.scss';
 import styles from './styles/Home.module.css';
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+    const router = useRouter();
     return (
         <div>
             <div className={styles.container}>
@@ -14,8 +18,7 @@ export default function Home() {
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
                 aliquip ex ea commodo consequat. Duis aute irure dolor in.
                 </p>
-
-                <button>Search Here</button>
+                    <button className={styles.button} onClick={() => {router.push("/search");}}>Search Here</button>
             </div>
         </div>
     );

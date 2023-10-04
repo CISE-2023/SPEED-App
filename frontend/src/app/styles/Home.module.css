@@ -21,3 +21,9 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+.button {
+    width: 15vw;
+    height: 7.5vh;
+    font-size: 20px;
+}
