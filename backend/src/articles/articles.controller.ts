@@ -14,6 +14,15 @@ export class ArticlesController {
 
     @Post()
     async createArticle(@Body() createArticleDto: CreateArticleDto): Promise<Article> {
-        return this.articlesService.createArticle(createArticleDto.title, createArticleDto.seMethod, createArticleDto.claim, createArticleDto.comments);
+        return this.articlesService.createArticle(
+            createArticleDto.title, 
+            createArticleDto.source, 
+            createArticleDto.publication, 
+            createArticleDto.author,
+            createArticleDto.volume,
+            createArticleDto.number,
+            createArticleDto.doi,
+            createArticleDto.comments
+        );
     }
 }

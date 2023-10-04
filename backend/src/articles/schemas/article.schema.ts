@@ -9,10 +9,22 @@ export class Article {
     title: string;
 
     @Prop()
-    seMethod: string;
+    source: string;
 
     @Prop()
-    claim: string;
+    publication: number;
+
+    @Prop()
+    author: string;
+
+    @Prop()
+    volume: string;
+
+    @Prop()
+    number: number;
+
+    @Prop()
+    doi: string;
 
     @Prop()
     comments: string;
