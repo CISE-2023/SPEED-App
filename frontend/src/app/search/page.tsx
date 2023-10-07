@@ -21,9 +21,9 @@ export default function SearchPage() {
               <h2 className={style.subheading}>SE Method</h2>
               {/*SE Method dropdown*/}
               <div style={{ marginRight: "3vw" }}>
-                <Dropdown id={style.dropdown}>
+                <Dropdown className="dropdown">
                   <Dropdown.Toggle
-                    className="dropdown"
+                    className="dropdownMenu"
                     variant="success"
                     id="dropdown-basic"
                   >
@@ -50,7 +50,7 @@ export default function SearchPage() {
                 </Dropdown>
               </div>
             </div>
-            <div className={style.spacer} />
+            <div className={style.blueLine} />
             <div className={style.claimWrapper}>
               <h2 className={style.subheading} style={{marginLeft: "2.5vw"}}>Claim</h2>
               <div style={{ marginLeft: "3vw" }}>

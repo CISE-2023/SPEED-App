@@ -74,3 +74,27 @@
 textarea {
     resize: none;
 }
+
+.dropdown button{
+    background-color: #45AADD;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: 10vw;
+  }
+
+.dropdown button:focus {
+    background-color: #45AADD !important;
+}
+
+.dropdown button:active{
+    background-color: #45AADD !important;
+}
+
+.dropdown button:hover{
+    background-color: #45AADD !important;
+}
+
+
