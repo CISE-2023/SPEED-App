@@ -75,7 +75,7 @@ textarea {
     resize: none;
 }
 
-.dropdown button{
+#dropdown button{
     background-color: #45AADD;
     border-color: #fff;
     border-style: solid;
@@ -85,16 +85,10 @@ textarea {
     width: 10vw;
   }
 
-.dropdown button:focus {
-    background-color: #45AADD !important;
+.dropdown button:active, .dropdown button:hover{
+    background-color: #4592dd !important;
 }
 
-.dropdown button:active{
-    background-color: #45AADD !important;
-}
 
-.dropdown button:hover{
-    background-color: #45AADD !important;
-}
 
 

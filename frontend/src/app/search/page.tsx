@@ -21,7 +21,7 @@ export default function SearchPage() {
               <h2 className={style.subheading}>SE Method</h2>
               {/*SE Method dropdown*/}
               <div style={{ marginRight: "3vw" }}>
-                <Dropdown className="dropdown">
+                <Dropdown id="dropdown">
                   <Dropdown.Toggle
                     className="dropdownMenu"
                     variant="success"
@@ -53,11 +53,14 @@ export default function SearchPage() {
             <div className={style.blueLine} />
             <div className={style.claimWrapper}>
               <h2 className={style.subheading} style={{marginLeft: "2.5vw"}}>Claim</h2>
-              <div style={{ marginLeft: "3vw" }}>
+              <div style={{ marginLeft: "1.5vw" }}>
                 {/*Claim dropdown*/}
 
-                <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown id="dropdown">
+                  <Dropdown.Toggle 
+                    variant="success" 
+                    id="dropdown-basic"
+                    className="dropdownMenu">
                     {claimSelection ? claimSelection : "Select Claim"}
                   </Dropdown.Toggle>
 
