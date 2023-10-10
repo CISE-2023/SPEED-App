@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import style from "../styles/Search.module.css";
-import Button from "../../components/Button";
+//import Button from "../../components/Button";
 
 export default function SearchPage() {
   const [seSelection, setSESelection] = useState("");
@@ -11,15 +11,14 @@ export default function SearchPage() {
 
   return (
     <div className="page">
-      <div className={style.pageContents}>
+      <div className="pageContents">
         <h1 className="heading">SEARCH</h1>
         <p>Select your software engineering method of interest and claim.</p>
 
-        <form className={style.pageContents}>
+        <form className="pageContents">
           <div className={style.wrapper}>
             <div className={style.methodWrapper}>
               <h2 className={style.subheading}>SE Method</h2>
-              {/*SE Method dropdown*/}
               <div style={{ marginRight: "3vw" }}>
                 <Dropdown id="dropdown">
                   <Dropdown.Toggle
@@ -54,8 +53,6 @@ export default function SearchPage() {
             <div className={style.claimWrapper}>
               <h2 className={style.subheading} style={{marginLeft: "2.5vw"}}>Claim</h2>
               <div style={{ marginLeft: "1.5vw" }}>
-                {/*Claim dropdown*/}
-
                 <Dropdown id="dropdown">
                   <Dropdown.Toggle 
                     variant="success" 

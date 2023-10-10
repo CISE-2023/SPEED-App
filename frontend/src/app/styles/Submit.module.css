@@ -1,0 +1,17 @@
+.wrapper{
+    display: flex;
+    width: 60vw;
+    height: 30vh;
+    justify-content: space-between;
+}
+
+.columnWrapper{
+    display: flex;
+    width: 45%;
+    flex-direction: column;
+}
+
+.rowWrapper{
+    display: flex;
+    justify-content: space-between;
+}

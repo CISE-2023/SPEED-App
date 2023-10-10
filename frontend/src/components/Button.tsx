@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import styles from '../styles/Button.module.css';
 
 type Props = {
@@ -16,4 +16,4 @@ function Button({onClick, name} : Props) {
     );
 }
 
-export default Button;
+export default Button;*/
