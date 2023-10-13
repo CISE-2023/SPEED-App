@@ -18,44 +18,47 @@ export default function SubmitPage() {
     <div className="page">
       <div className="pageContents">
         <h1 className="heading">SUBMIT ARTICLE</h1>
-        <p>
+        <p className="text">
           Fill in the form manually below or upload an article in BibTeX Format
           to submit an article to the database.
         </p>
-        <form className="pageContents">
+        <form>
           <div className={style.wrapper}>
             <div className={style.columnWrapper}>
-              <label htmlFor="title">
+              <label className="text">
                 Article Title <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
                 id="title"
                 required={true}
+                className={style.inputBox}
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
               />
 
-              <label htmlFor="journal">
+              <label className="text">
                 Journal Name <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
                 id="journal"
                 required={true}
+                className={style.inputBox}
                 onChange={(e) => {
                   setJournal(e.target.value);
                 }}
               />
 
-              <label htmlFor="publication">
+              <label className="text">
                 Year of Publication <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
                 id="publication"
                 required={true}
+                className={style.inputBox}
                 onChange={(e) => {
                   setPublication(parseInt(e.target.value));
                 }}
@@ -63,25 +66,27 @@ export default function SubmitPage() {
             </div>
             
             <div className={style.columnWrapper}>
-              <label htmlFor="author">
+              <label className="text">
                 Authors <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
                 id="author"
                 required={true}
+                className={style.inputBox}
                 onChange={(e) => {
                   setAuthor(e.target.value);
                 }}
               />
 
-              <label htmlFor="doi">
+              <label className="text">
                 DOI <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
                 id="doi"
                 required={true}
+                className={style.inputBox}
                 onChange={(e) => {
                   setDOI(parseInt(e.target.value));
                 }}
@@ -89,13 +94,12 @@ export default function SubmitPage() {
 
               <div className={style.rowWrapper}>
                 <div className={style.columnWrapper}>
-                  <label className="temp" htmlFor="volume">
+                  <label className="text">
                     Volume
                   </label>
                   <input
-                    className="halfSize"
                     type="text"
-                    id="volume"
+                    className={style.inputBox}
                     onChange={(e) => {
                       setVolume(e.target.value);
                     }}
@@ -103,12 +107,13 @@ export default function SubmitPage() {
                 </div>
                 
                 <div className={style.columnWrapper}>
-                  <label className="temp" htmlFor="number">
+                  <label className="text" htmlFor="number">
                     Number
                   </label>
                   <input
                     type="number"
                     id="number"
+                    className={style.inputBox}
                     onChange={(e) => {
                       setNumber(parseInt(e.target.value));
                     }}
@@ -119,7 +124,7 @@ export default function SubmitPage() {
           </div>
           <div className={style.endWrapper}>
             <div className={style.columnWrapper}>
-              <label htmlFor="comments">Comments</label>
+              <label className="text">Comments</label>
               <textarea
                 rows={8}
                 className={style.textArea}

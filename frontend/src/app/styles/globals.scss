@@ -48,6 +48,15 @@
     
 }
 
+.text {
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+letter-spacing: 0.05em;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -97,9 +106,6 @@
     background: #4592dd;
 }
 
-textarea {
-    resize: none;
-}
 
 #dropdown button{
     background-color: #45AADD;
