@@ -17,7 +17,7 @@ export default function SubmitPage() {
   return (
     <div className="page">
       <div className="pageContents">
-        <h1 className="heading">SUBMIT</h1>
+        <h1 className="heading">SUBMIT ARTICLE</h1>
         <p>
           Fill in the form manually below or upload an article in BibTeX Format
           to submit an article to the database.
@@ -107,7 +107,6 @@ export default function SubmitPage() {
                     Number
                   </label>
                   <input
-                    className="halfSize"
                     type="number"
                     id="number"
                     onChange={(e) => {
@@ -118,11 +117,12 @@ export default function SubmitPage() {
               </div>
             </div>
           </div>
-          <div className={style.rowWrapper}>
+          <div className={style.endWrapper}>
             <div className={style.columnWrapper}>
               <label htmlFor="comments">Comments</label>
               <textarea
                 rows={8}
+                className={style.textArea}
                 cols={50}
                 id="comments"
                 onChange={(e) => {
@@ -130,7 +130,7 @@ export default function SubmitPage() {
                 }}
               />
             </div>
-            <input type="submit" />
+            <input className="submit" type="submit" value="Submit Form" />
           </div>
         </form>
       </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import style from "../styles/Search.module.css";
 //import Button from "../../components/Button";
+import "../styles/globals.scss";
 
 export default function SearchPage() {
   const [seSelection, setSESelection] = useState("");
@@ -77,7 +78,7 @@ export default function SearchPage() {
             </div>
           </div>
           <input
-            className={style.submit}
+            className="submit"
             type="submit"
             value="Search Article"
           />

@@ -2,6 +2,14 @@
     font-family: "Inter";
     src: local("inter-regular"),
     url("./fonts/Inter-Regular.ttf") format("truetype");
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Inter";
+    src: local("inter-medium"),
+    url("./fonts/Inter-Medium.ttf") format("truetype");
+    font-weight:500;
   }
 
 .app {
@@ -32,11 +40,11 @@
 
 .heading {
     font-family: 'Inter';
-    font-style: normal;
-    font-size: 90px;
+    font-size: 75px;
     margin-top: 5vh;
     color: #38729D;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
+    font-weight: 500;
     
 }
 
@@ -75,8 +83,18 @@
     padding-right: 60px;
 }
 
-.halfSize {
-    width: 100px;
+.submit{
+    width: 12vw;
+    height: 6.5vh;
+    background: #45AADD;
+    border: 0px solid #45AADD;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    }
+    
+.submit:hover{
+    background: #4592dd;
 }
 
 textarea {

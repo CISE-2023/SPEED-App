@@ -37,17 +37,3 @@
     margin-left: 7vw;
 }
 
-.submit{
-width: 12vw;
-height: 6.5vh;
-background: #45AADD;
-border: 0px solid #45AADD;
-border-radius: 5px;
-color: white;
-font-size: 20px;
-
-}
-
-.submit:hover{
-    background: #4592dd;
-}
