@@ -7,12 +7,12 @@ import styles from "./Nav.module.scss";
 type Props = {
     route?: string;
     children: React.ReactNode;
-    logo?: boolean;
+    end?: boolean;
     onClick?: boolean | (() => void);
     style?: React.CSSProperties;
 };
 
-const NavItem = ({ children, route, logo, onClick, style }: Props) => {
+const NavItem = ({ children, route, end, onClick, style }: Props) => {
     const router = useRouter();
 
     const navigate: React.MouseEventHandler<HTMLDivElement> = (event) => {
@@ -26,7 +26,7 @@ const NavItem = ({ children, route, logo, onClick, style }: Props) => {
         <div
             style={style}
             className={`${route || onClick ? styles.clickable : styles.navitem}${
-                logo ? ` ${styles.logo}` : ""}`}
+                end ? ` ${styles.end}` : ""}`}
             onClick={typeof onClick === "function" ? onClick : navigate}
         >
             {children}

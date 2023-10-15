@@ -6,8 +6,8 @@ const PopulatedNavBar = () => {
 
   return (
     <NavBar>
-      <NavItem logo>SPEED</NavItem>
-      <NavItem route="/">
+      <NavItem>SPEED</NavItem>
+      <NavItem route="/" end>
         HOME
       </NavItem>
       <NavItem route="/search">
