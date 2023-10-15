@@ -23,4 +23,8 @@ export class ArticlesRepository {
     async findOneAndUpdate(articleFilterQuery: FilterQuery<Article>, article: Partial<Article>): Promise<Article> {
         return this.articleModel.findOneAndUpdate(articleFilterQuery, article);
     }
+
+    async remove(articleFilterQuery: FilterQuery<Article>): Promise<void> {
+        await this.articleModel.deleteOne(articleFilterQuery);
+    }
 }

@@ -21,9 +21,9 @@ const PopulatedNavBar = () => {
           MODERATE
         </NavItem> 
       : null}
-      {accType === "analyst" ? 
+      {/*accType === "analyst"*/ true ? /*for testing purposes*/ 
         <NavItem route="/analyse">
-          MODERATE
+          ANALYSE
         </NavItem> 
       : null}
     </NavBar>
