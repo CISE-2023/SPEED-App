@@ -1,10 +1,11 @@
 "use client";
 
-import './globals.scss'
+import './styles/globals.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import PopulatedNavBar from '@/components/PopulatedNavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/globals.scss';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="app">
         <PopulatedNavBar />
         {children}      
       </body>

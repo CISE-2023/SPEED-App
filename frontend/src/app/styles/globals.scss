@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "Inter";
+    src: local("inter-regular"),
+    url("./fonts/Inter-Regular.ttf") format("truetype");
+  }
+
+.app {
+    background-image: url('./images/background.svg');
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.page {
+    margin-top: 2.5vh;
+    width: 80vw;
+    height: 84vh;
+    margin-top: 10vh;
+    margin: 3vh auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.heading {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 90px;
+    margin-top: 5vh;
+    color: #38729D;
+    letter-spacing: 0.15em;
+    
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 30em;
+}
+
+.formItem {
+    padding: 1em;
+    margin: 1em 0;
+    flex-grow: 1;
+}
+
+.formTextArea {
+    @extend .formItem;
+    min-height: 8em;
+}
+
+.arrayItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.buttonItem {
+    width: 3rem;
+    height: 3rem;
+    flex-grow: 0;
+    font-size: 1.5em;
+}
+
+.temp {
+    padding-right: 60px;
+}
+
+.halfSize {
+    width: 100px;
+}
+
+textarea {
+    resize: none;
+}

@@ -1,0 +1,55 @@
+.pageContents {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper{
+    display: flex;
+    width: 60vw;
+    height: 25vh;
+    justify-content: space-between;
+}
+
+.subheading{
+    font-size: 45px;
+    letter-spacing: 0.1em;
+    height: 15vw;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.methodWrapper{
+    display: flex;
+    width: 45%;
+    height:13vh;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 5vw;
+}
+
+.claimWrapper{
+    display: flex;
+    width: 45%;
+    height:13vh;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 12vw;
+}
+
+.submit{
+    /* Search Button */
+width: 12vw;
+height: 6.5vh;
+background: #45AADD;
+border: 0.5px solid #000000;
+border-radius: 5px;
+color: white;
+font-size: 20px;
+
+}
+
+
+
