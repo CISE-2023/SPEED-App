@@ -1,10 +1,10 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-export type ArticleDocument = Article & Document;
+export type ArticleDocument = ModeratedArticle & Document;
 
 @Schema()
-export class Article {
+export class ModeratedArticle {
     @Prop()
     title: string;
 
@@ -30,4 +30,4 @@ export class Article {
     comments: string;
 }
 
-export const ArticleSchema = SchemaFactory.createForClass(Article);
+export const ArticleSchema = SchemaFactory.createForClass(ModeratedArticle);

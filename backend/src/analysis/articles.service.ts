@@ -1,17 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { ArticlesRepository } from "./articles.repository";
-import { Article } from "./schemas/article.schema";
+import { AnalysisArticle } from "./schemas/article.schema";
 
 @Injectable()
 export class ArticlesService {
     constructor(private readonly articlesRepository: ArticlesRepository) {}
 
-    async getArticles(): Promise<Article[]> {
+    async getArticles(): Promise<AnalysisArticle[]> {
         return this.articlesRepository.find({});
     }
 
-    async createArticle(title: string, source: string, publication: number, author: string, volume: string, number: number, doi: string, comments: string): 
-    Promise<Article> {
+    async createArticle(title: string, source: string, publication: number, author: string, volume: string, number: number, doi: string, comments: string, 
+        seMethod: string, claim: string, evidence: string): 
+    Promise<AnalysisArticle> {
         return this.articlesRepository.create({
             title,
             source,
@@ -21,7 +22,9 @@ export class ArticlesService {
             number,
             doi,
             comments,
+            seMethod,
+            claim,
+            evidence
         });
-    }
-    
+    }    
 }

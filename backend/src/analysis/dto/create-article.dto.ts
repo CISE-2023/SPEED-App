@@ -7,4 +7,7 @@ export class CreateArticleDto {
     number: number;
     doi: string;
     comments: string;
+    seMethod: string;
+    claim: string;
+    evidence: string;
 }
