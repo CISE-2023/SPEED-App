@@ -1,16 +1,26 @@
 "use client";
 
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ARTICLES } from '../../../testdata';
 
 const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSelection: string; }}) => {
-  
-  const [articles, setArticles] = useState(ARTICLES.filter((article) => article.practice === searchParams.seSelection && article.claim === searchParams.claimSelection));
+
+  const [art, setArt] = useState(ARTICLES);
+
+  useEffect(()=>{
+    if(searchParams.claimSelection && searchParams.seSelection) {
+      setArt(art.filter((article) => article.practice === searchParams.seSelection && article.claim === searchParams.claimSelection));
+    } else if (searchParams.claimSelection) {
+        setArt(art.filter((article) => article.claim === searchParams.claimSelection));
+    } else if (searchParams.seSelection) {
+        setArt(art.filter((article) => article.practice === searchParams.seSelection));
+      } 
+	}, [])
   
     return (
       <div>
-      {articles.map((article) => (
+      {art.map((article) => (
         <div key={article.id}>
         <h4>Title: {article.title}</h4>
         <p>Claim: {article.claim}</p>
