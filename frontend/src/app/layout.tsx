@@ -1,4 +1,6 @@
-import './styles/globals.scss'
+
+
+import './globals.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import PopulatedNavBar from '@/components/PopulatedNavBar';
