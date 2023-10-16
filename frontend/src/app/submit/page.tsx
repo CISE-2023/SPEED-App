@@ -1,18 +1,61 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from 'axios';
 
 import style from "../styles/Submit.module.css";
 
 export default function SubmitPage() {
-  const [title, setTitle] = useState("");
-  const [journal, setJournal] = useState("");
-  const [publication, setPublication] = useState(0);
-  const [author, setAuthor] = useState("");
-  const [volume, setVolume] = useState("");
-  const [number, setNumber] = useState(0);
-  const [doi, setDOI] = useState(0);
-  const [comments, setComments] = useState("");
+  const router = useRouter();
+  const { v4: uuidv4 } = require('uuid');
+  
+  const [article, setArticle] = useState({
+      id: uuidv4(),
+      title: '',
+      source: '',
+      publication: '',
+      author: '',
+      volume: '',
+      number: '',
+      doi: '',
+      comments: '',
+  });
+
+  const [textEnabled, setTextEnabled] = useState(false);
+
+  const onChange = (e: React.ChangeEvent<any>) => {
+    setArticle({ ...article, [e.target.id]: e.target.value});
+  }
+
+  const handleSubmit = (e: React.ChangeEvent<any>) => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:3001/articles', article)
+      .then((res) => {
+        setArticle({
+          id: uuidv4(),
+          title: '',
+          source: '',
+          publication: '',
+          author: '',
+          volume: '',
+          number: '',
+          doi: '',
+          comments: '',
+        }); // Reset the article variable to it's default values once it has been posted to the API
+
+        setTextEnabled(true); // Enable the confirmation text at the bottom of the page if the new article is successfully posted to the API
+
+        setTimeout(() => {
+            setTextEnabled(false); // Disable the confirmation text after a few seconds
+        }, 2000)
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+  }
 
   return (
     <div className="page">
@@ -22,46 +65,43 @@ export default function SubmitPage() {
           Fill in the form manually below or upload an article in BibTeX Format
           to submit an article to the database.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={style.wrapper}>
             <div className={style.columnWrapper}>
               <label className="text">
                 Article Title <span style={{ color: "red" }}>*</span>
               </label>
               <input
+                className={style.inputBox}
                 type="text"
                 id="title"
+                value={article.title}
                 required={true}
-                className={style.inputBox}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
+                onChange={onChange}
               />
 
               <label className="text">
-                Journal Name <span style={{ color: "red" }}>*</span>
+                Source <span style={{ color: "red" }}>*</span>
               </label>
               <input
+                className={style.inputBox}                
                 type="text"
-                id="journal"
+                id="source"
+                value={article.source}
                 required={true}
-                className={style.inputBox}
-                onChange={(e) => {
-                  setJournal(e.target.value);
-                }}
+                onChange={onChange}
               />
 
               <label className="text">
                 Year of Publication <span style={{ color: "red" }}>*</span>
               </label>
               <input
+                className={style.inputBox}
                 type="number"
                 id="publication"
+                value={article.publication}
                 required={true}
-                className={style.inputBox}
-                onChange={(e) => {
-                  setPublication(parseInt(e.target.value));
-                }}
+                onChange={onChange}
               />
             </div>
             
@@ -70,26 +110,24 @@ export default function SubmitPage() {
                 Authors <span style={{ color: "red" }}>*</span>
               </label>
               <input
+                className={style.inputBox}
                 type="text"
                 id="author"
+                value={article.author}
                 required={true}
-                className={style.inputBox}
-                onChange={(e) => {
-                  setAuthor(e.target.value);
-                }}
+                onChange={onChange}
               />
 
               <label className="text">
                 DOI <span style={{ color: "red" }}>*</span>
               </label>
               <input
-                type="number"
-                id="doi"
-                required={true}
                 className={style.inputBox}
-                onChange={(e) => {
-                  setDOI(parseInt(e.target.value));
-                }}
+                type="text"
+                id="doi"
+                value={article.doi}
+                required={true}
+                onChange={onChange}
               />
 
               <div className={style.rowWrapper}>
@@ -98,11 +136,12 @@ export default function SubmitPage() {
                     Volume
                   </label>
                   <input
-                    type="text"
                     className={style.inputBox}
-                    onChange={(e) => {
-                      setVolume(e.target.value);
-                    }}
+                    type="number"
+                    id="volume"
+                    value={article.volume}
+                    required={true}
+                    onChange={onChange}
                   />{" "}
                 </div>
                 
@@ -111,12 +150,12 @@ export default function SubmitPage() {
                     Number
                   </label>
                   <input
+                    className={style.inputBox}
                     type="number"
                     id="number"
-                    className={style.inputBox}
-                    onChange={(e) => {
-                      setNumber(parseInt(e.target.value));
-                    }}
+                    value={article.number}
+                    required={true}
+                    onChange={onChange}
                   />
                 </div>
               </div>
@@ -130,12 +169,13 @@ export default function SubmitPage() {
                 className={style.textArea}
                 cols={50}
                 id="comments"
-                onChange={(e) => {
-                  setComments(e.target.value);
-                }}
+                onChange={onChange}
               />
             </div>
             <input className="submit" type="submit" value="Submit Form" />
+            {textEnabled 
+              ? <span style={{color:"green"}}>&nbsp;<strong>Your new article has been successfully submitted!</strong></span>
+              : null}
           </div>
         </form>
       </div>

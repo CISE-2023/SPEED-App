@@ -1,5 +1,5 @@
 export class CreateArticleDto {
-    id: string
+    id: string;
     title: string;
     source: string;
     publication: number;
@@ -8,4 +8,7 @@ export class CreateArticleDto {
     number: number;
     doi: string;
     comments: string;
+    seMethod: string;
+    claim: string;
+    evidence: string;
 }

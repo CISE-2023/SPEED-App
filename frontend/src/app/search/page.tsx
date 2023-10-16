@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import style from "../styles/Search.module.css";
-//import Button from "../../components/Button";
 import "../styles/globals.scss";
 
 export default function SearchPage() {
-  const [seSelection, setSESelection] = useState("");
-  const [claimSelection, setClaimSelection] = useState("");
+    const [seSelection, setSESelection] = useState("");
+    const [claimSelection, setClaimSelection] = useState("");
 
   return (
     <div className="page">
