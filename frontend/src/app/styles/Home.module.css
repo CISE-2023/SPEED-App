@@ -1,0 +1,35 @@
+.heading{
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 100px;
+    color: white;
+}
+
+.subheading{
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 50px;
+    color:white;
+}
+
+.text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 30px;
+    color: white;
+}
+
+.container {
+    width: 50vw;
+    padding-top: 70px;
+    margin-left: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.button {
+    width: 15vw;
+    height: 7.5vh;
+    font-size: 20px;
+}
