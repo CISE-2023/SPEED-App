@@ -11,7 +11,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
     return (
       <div>
       {articles.map((article) => (
-        <div key={article.id} className="font-regular-8">
+        <div key={article.id}>
         <h4>Title: {article.title}</h4>
         <p>Claim: {article.claim}</p>
         <p>SE Method: {article.practice}</p>

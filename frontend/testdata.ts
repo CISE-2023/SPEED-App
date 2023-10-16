@@ -47,7 +47,7 @@ export const ARTICLES = [
     volume: "25",
     number: 2,
     doi: "https://doi.org/10.1145/2601248.2601267",
-    claim: "Against",
+    claim: "against",
     practice: "tdd",
   },
   {
@@ -60,7 +60,7 @@ export const ARTICLES = [
     volume: "25",
     number: 2,
     doi: "https://doi.org/10.1145/2601248.2601267",
-    claim: "Against",
+    claim: "against",
     practice: "mob programming",
   },
 ];
