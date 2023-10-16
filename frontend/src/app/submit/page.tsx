@@ -6,8 +6,10 @@ import axios from 'axios';
 
 export default function SubmitPage() {
     const router = useRouter();
+    const { v4: uuidv4 } = require('uuid');
     
     const [article, setArticle] = useState({
+        id: uuidv4(),
         title: '',
         source: '',
         publication: '',
@@ -31,6 +33,7 @@ export default function SubmitPage() {
             .post('http://localhost:3001/articles', article)
             .then((res) => {
                 setArticle({
+                    id: uuidv4(),
                     title: '',
                     source: '',
                     publication: '',

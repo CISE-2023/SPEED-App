@@ -6,6 +6,9 @@ export type ArticleDocument = ModeratedArticle & Document;
 @Schema()
 export class ModeratedArticle {
     @Prop()
+    id: string; 
+    
+    @Prop()
     title: string;
 
     @Prop()
