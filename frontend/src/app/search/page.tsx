@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 
@@ -21,9 +22,8 @@ export default function SearchPage() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setSESelection("SE Practice 1")}>SE Practice 1</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setSESelection("SE Practice 2")}>SE Practice 2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setSESelection("SE Practice 3")}>SE Practice 3</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setSESelection("tdd")}>TDD</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setSESelection("mob programming")}>Mob Programming</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>  
             <br />
@@ -35,14 +35,14 @@ export default function SearchPage() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setClaimSelection("Claim 1")}>Claim 1</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setClaimSelection("Claim 2")}>Claim 2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setClaimSelection("Claim 3")}>Claim 3</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setClaimSelection("against")}>Against</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setClaimSelection("for")}>For</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown> 
-            <input type="submit" />
+                <Link href={{pathname: "/SearchResults",query: { seSelection, claimSelection },}}>
+                    <input type="submit" />
+                </Link>
             </form>    
         </div>
-        
     );
 }
