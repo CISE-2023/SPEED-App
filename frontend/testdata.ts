@@ -9,7 +9,7 @@ export const ARTICLES = [
     volume: "25",
     number: 2,
     doi: "https://doi.org/10.1145/2601248.2601267",
-    claim: "against",
+    claim: "for",
     practice: "tdd",
   },
   {
@@ -53,7 +53,7 @@ export const ARTICLES = [
   {
     id: 5,
     title:
-      "Does Test Driven Development Really Improve Software Design Quality?",
+      "Does Mob programming slow down development time?",
     source: "IEEE, Software",
     publication: "2020",
     author: "John",
