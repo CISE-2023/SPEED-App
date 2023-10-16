@@ -13,9 +13,9 @@ export default function ModerationPage() {
     const approved = (status: boolean, article: any) => {
         console.log(`article was approved: ${status}`);
 
-        if(status) { // Send article to analysis queue           
+        if(status) {            
             axios
-                .post('http://localhost:3001/moderate', article)
+                .post('http://localhost:3001/moderate', article) // Send article to analysis queue
                 .then(() => {
                     axios
                         .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
@@ -29,10 +29,22 @@ export default function ModerationPage() {
                 .catch((error) => {
                     console.error(error);
                 });
-        } else { // Send article to rejection queue            
+        } else {             
             axios
-                .get(`http://localhost:3001/articles/${article.id}`)
-                .then((response) => console.log(response.data));
+                .post('http://localhost:3001/rejected', article) // Send article to rejection queue
+                .then(() => {
+                    axios
+                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
+                        .then(() => {
+                            getArticleData();
+                        })            
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         }
     }
 
