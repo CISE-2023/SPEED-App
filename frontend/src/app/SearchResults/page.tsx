@@ -6,8 +6,10 @@ import { ARTICLES } from '../../../testdata';
 
 const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSelection: string; }}) => {
 
+  // Saves the test article data into a state variable (test data to be replaced with actual data)
   const [art, setArt] = useState(ARTICLES);
 
+  // Filters the articles based on the search parameters (runs on initial page load.)
   useEffect(()=>{
     if(searchParams.claimSelection && searchParams.seSelection) {
       setArt(art.filter((article) => article.practice === searchParams.seSelection && article.claim === searchParams.claimSelection));
@@ -17,7 +19,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
         setArt(art.filter((article) => article.practice === searchParams.seSelection));
       } 
 	}, [])
-  
+
     return (
       <div>
       {art.map((article) => (
