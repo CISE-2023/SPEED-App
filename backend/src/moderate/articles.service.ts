@@ -10,9 +10,14 @@ export class ArticlesService {
         return this.articlesRepository.find({});
     }
 
-    async createArticle(title: string, source: string, publication: number, author: string, volume: string, number: number, doi: string, comments: string): 
+    async getArticleByID(id: string): Promise<ModeratedArticle> {
+        return this.articlesRepository.findOne({ id });
+    }
+
+    async createArticle(id: string, title: string, source: string, publication: number, author: string, volume: string, number: number, doi: string, comments: string): 
     Promise<ModeratedArticle> {
         return this.articlesRepository.create({
+            id,
             title,
             source,
             publication,
@@ -23,4 +28,8 @@ export class ArticlesService {
             comments,
         });
     }    
+    
+    async deleteArticle(id: string): Promise<void> {
+        return this.articlesRepository.remove({ id });
+    }
 }

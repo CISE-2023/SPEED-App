@@ -9,27 +9,36 @@ import ArticleCard from "@/components/ArticleCard";
 
 export default function ModerationPage() {
     const [articles, setArticles] = useState([]); // Initialise an array of articles using the useState hook
-    const [articleID, setArticleID] = useState([]);
 
     const approved = (status: boolean, article: any) => {
         console.log(`article was approved: ${status}`);
 
-        if(status) { //send article to analysis queue           
+        if(status) { // Send article to analysis queue           
             axios
                 .post('http://localhost:3001/moderate', article)
                 .then(() => {
+                    axios
+                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
+                        .then(() => {
+                            getArticleData();
+                        })            
+                        .catch((error) => {
+                            console.error(error);
+                        });
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-        } else { //send article to rejection queue            
-            axios.delete('http://localhost:3001/analysis');
+        } else { // Send article to rejection queue            
+            axios
+                .get(`http://localhost:3001/articles/${article.id}`)
+                .then((response) => console.log(response.data));
         }
     }
 
     /* AXIOS */
 
-    useEffect(() => {
+    const getArticleData = () => {
         axios
             .get('http://localhost:3001/articles') // Request data from the API (at the URL of our backend server) using the GET method
             .then((response) => {
@@ -38,6 +47,10 @@ export default function ModerationPage() {
             .catch((error) => {
                 console.error('Error retrieving a response from the backend server.'); // Log an error message if the request failed
             });
+    }
+
+    useEffect(() => {
+        getArticleData();
     }, []); // Leave dependencies empty so that the useEffect hook triggers once when the page first loads 
 
     const articlesList = 

@@ -1,4 +1,5 @@
 export class CreateArticleDto {
+    id: string
     title: string;
     source: string;
     publication: number;

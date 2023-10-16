@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
 import { ArticlesService } from "./articles.service";
 import { ModeratedArticle } from "./schemas/article.schema";
 import { CreateArticleDto } from "./dto/create-article.dto";
@@ -12,9 +12,15 @@ export class ArticlesController {
         return this.articlesService.getArticles();
     }
 
+    @Get('/:id')
+    async getArticleById(@Param('id') id: string) {
+        return this.articlesService.getArticleByID(id);
+    } 
+
     @Post()
     async createArticle(@Body() createArticleDto: CreateArticleDto): Promise<ModeratedArticle> {
         return this.articlesService.createArticle(
+            createArticleDto.id,
             createArticleDto.title, 
             createArticleDto.source, 
             createArticleDto.publication, 
@@ -24,5 +30,10 @@ export class ArticlesController {
             createArticleDto.doi,
             createArticleDto.comments
         );
+    }
+
+    @Delete('/:id')
+    async deleteArticle(@Param('id') id: string) {
+        return this.articlesService.deleteArticle(id);
     }
 }

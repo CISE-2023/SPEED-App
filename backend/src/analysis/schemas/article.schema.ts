@@ -6,6 +6,9 @@ export type ArticleDocument = AnalysisArticle & Document;
 @Schema()
 export class AnalysisArticle {
     @Prop()
+    id: string;
+    
+    @Prop()
     title: string;
 
     @Prop()

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 type Props = {
     article: {
+        id: string;
         title: string;
         source: string;
         publication: number;
@@ -51,6 +52,7 @@ const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
     
     return (
         <div>
+            <strong>Article ID:</strong> {article?.id} <br/>
             <strong>Article Title:</strong> {article.title} <br/>
             <strong>Source:</strong> {article.source} <br/>
             <strong>publication:</strong> {article.publication} <br/>
@@ -64,7 +66,12 @@ const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
             {article.doi
                 ?  <><strong>DOI:</strong> {article.doi} <br/></> 
                 : null}
-            <strong>Comments:</strong> {article.comments} <br/><br/>
+            {article.comments
+                ?  <><strong>Comments:</strong> {article.comments} <br/></> 
+                : null}
+
+            <br/>
+
             {moderation ? 
                 <>
                     <div>

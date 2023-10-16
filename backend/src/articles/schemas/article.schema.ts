@@ -6,6 +6,9 @@ export type ArticleDocument = Article & Document;
 @Schema()
 export class Article {
     @Prop()
+    id: string;
+
+    @Prop()
     title: string;
 
     @Prop()
