@@ -3,6 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from 'axios';
+import emailjs from 'emailjs-com';
+
+const EMAILJS_SERVICE_ID = 'service_eor345g';
+const EMAILJS_TEMPLATE_ID = 'template_ujwxdsc';
+const EMAILJS_USER_ID = 'jUT_Gv6R2kw3dHSNG';
+
+emailjs.init(EMAILJS_USER_ID);
 
 import style from "../styles/Submit.module.css";
 
@@ -47,6 +54,7 @@ export default function SubmitPage() {
         }); // Reset the article variable to it's default values once it has been posted to the API
 
         setTextEnabled(true); // Enable the confirmation text at the bottom of the page if the new article is successfully posted to the API
+        sendEmailNotification()
 
         setTimeout(() => {
             setTextEnabled(false); // Disable the confirmation text after a few seconds
@@ -55,6 +63,23 @@ export default function SubmitPage() {
       .catch((error) => {
           console.error(error);
       });
+
+      const sendEmailNotification = () => {
+        // Prepare email data
+        const emailParams = {
+          to_email: 'cise.speedapp@gmail.com', // Replace with the recipient's email
+          message: 'An article has been added to the queue.',
+        };
+      
+        // Send the email using EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+          .then((response) => {
+            console.log('Email sent:', response);
+          })
+          .catch((error) => {
+            console.error('Email error:', error);
+          });
+      };
   }
 
   return (
