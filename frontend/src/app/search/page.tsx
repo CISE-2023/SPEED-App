@@ -8,6 +8,7 @@ export default function SearchPage() {
     const [seSelection, setSESelection] = useState("");
     const [claimSelection, setClaimSelection] = useState("");
 
+    // function to check wether the claim dropdown should be disabled or not
     const check = () => {
         if (seSelection === "") {
             return true;
