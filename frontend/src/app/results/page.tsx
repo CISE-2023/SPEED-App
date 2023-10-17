@@ -13,8 +13,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   useEffect(()=>{
     if(searchParams.claimSelection && searchParams.seSelection) {
       setArt(art.filter((article) => article.practice === searchParams.seSelection && article.claim === searchParams.claimSelection));
-    } else if (searchParams.claimSelection) {
-        setArt(art.filter((article) => article.claim === searchParams.claimSelection));
+    } else if (searchParams.claimSelection && !searchParams.seSelection) {
+        // Do nothing if only claim is selected
     } else if (searchParams.seSelection) {
         setArt(art.filter((article) => article.practice === searchParams.seSelection));
       } 
