@@ -11,17 +11,14 @@ export default function ModerationPage() {
     const [articles, setArticles] = useState([]); // Initialise an array of articles using the useState hook
 
     const approved = (status: boolean, article: any) => {
-        console.log(`article was approved: ${status}`);
+        console.log(`article approved status: ${status}`);
 
         if(status) {            
             axios
                 .post('http://localhost:3001/moderate', article) // Send article to analysis queue
                 .then(() => {
                     axios
-                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
-                        .then(() => {
-                            getArticleData();
-                        })            
+                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst        
                         .catch((error) => {
                             console.error(error);
                         });
@@ -68,7 +65,7 @@ export default function ModerationPage() {
     const articlesList = 
         articles.length === 0 // Check if any articles exist in the array
             ? 'There are currently no articles in the queue.' 
-            : articles.map((article, index) => <ArticleCard article={article} moderation={true} modButton={approved} key={index}/>); // Map each retrieved article to a JSX component for rendering
+            : articles.map((article, index) => <ArticleCard article={article} moderation={true} mSubmit={approved} index={index} key={index}/>); // Map each retrieved article to a JSX component for rendering
 
     /* RENDER */
 

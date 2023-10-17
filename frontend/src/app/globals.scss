@@ -69,6 +69,10 @@
     flex-grow: 1;
 }
 
+textarea {
+    resize: none;
+}
+
 .formTextArea {
     @extend .formItem;
     min-height: 8em;
