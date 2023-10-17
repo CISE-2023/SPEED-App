@@ -2,31 +2,60 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { ARTICLES } from '../../../testdata';
+import axios from 'axios';
 
 const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSelection: string; }}) => {
 
-  // Saves the test article data into a state variable (test data to be replaced with actual data)
-  const [art, setArt] = useState(ARTICLES);
+  // interface for articles
+  interface Article {
+    id: string;
+    title: string;
+    source: string;
+    publication: number;
+    author: string;
+    volume: string;
+    number: number;
+    doi: string;
+    comments: string;
+    summary: string;
+    seMethod: string;
+    claim: string;
+    evidence: string;
+  }
 
-  // Filters the articles based on the search parameters (runs on initial page load.)
+  const [articles, setArticles] = useState<Article[]>([]);
+
+  // function to get the article data from the backend and filter them based on the search parameters
+  const getArticleData = () => {
+    axios
+        .get('http://localhost:3001/analysis')
+        .then((response) => {
+            // Filter the articles here
+            const filteredArticles = response.data.filter((article: Article) => {
+              return (
+                (!searchParams.claimSelection || article.claim === searchParams.claimSelection) &&
+                (!searchParams.seSelection || article.seMethod === searchParams.seSelection)
+              );
+            });
+            setArticles(filteredArticles);
+        })
+        .catch((error) => {
+            console.error('Error retrieving a response from the backend server.');
+        });
+  }
+  
+  // get the article data from the backend when the page is loaded
   useEffect(()=>{
-    if(searchParams.claimSelection && searchParams.seSelection) {
-      setArt(art.filter((article) => article.practice === searchParams.seSelection && article.claim === searchParams.claimSelection));
-    } else if (searchParams.claimSelection && !searchParams.seSelection) {
-        // Do nothing if only claim is selected
-    } else if (searchParams.seSelection) {
-        setArt(art.filter((article) => article.practice === searchParams.seSelection));
-      } 
+    getArticleData();
 	}, [])
 
     return (
       <div>
-      {art.map((article) => (
-        <div key={article.id}>
+      {articles.map((article) => (
+        <div key={article.id} className='text-white'>
         <h4>Title: {article.title}</h4>
         <p>Claim: {article.claim}</p>
-        <p>SE Method: {article.practice}</p>
+        <p>SE Method: {article.seMethod}</p>
         <p>Publication Year: {article.publication}</p>
         <p>Author(s): {article.author}</p>
       </div>

@@ -33,7 +33,7 @@ export default function SearchPage() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setSESelection("")}>All SE Methods</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {setSESelection(""), setClaimSelection("")}}>All SE Methods</Dropdown.Item>
                     <Dropdown.Item onClick={() => setSESelection("tdd")}>TDD</Dropdown.Item>
                     <Dropdown.Item onClick={() => setSESelection("mob programming")}>Mob Programming</Dropdown.Item>
                 </Dropdown.Menu>
