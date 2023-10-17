@@ -33,7 +33,7 @@ export default function SearchPage() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setSESelection("")}>Select SE Method</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setSESelection("")}>All SE Methods</Dropdown.Item>
                     <Dropdown.Item onClick={() => setSESelection("tdd")}>TDD</Dropdown.Item>
                     <Dropdown.Item onClick={() => setSESelection("mob programming")}>Mob Programming</Dropdown.Item>
                 </Dropdown.Menu>
@@ -47,7 +47,7 @@ export default function SearchPage() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setClaimSelection("")}>Set Claim</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setClaimSelection("")}>All Claims</Dropdown.Item>
                     <Dropdown.Item onClick={() => setClaimSelection("against")}>Against</Dropdown.Item>
                     <Dropdown.Item onClick={() => setClaimSelection("for")}>For</Dropdown.Item>
                 </Dropdown.Menu>
