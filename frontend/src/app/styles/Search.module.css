@@ -1,0 +1,39 @@
+.blueLine{
+    background-image: url('./images/blueLine.svg');
+    width: 3px;
+    height: 170px;
+    margin-left: 6.5vw;
+}
+
+.wrapper{
+    display: flex;
+    width: 60vw;
+    height: 25vh;
+    justify-content: space-between;
+}
+
+.subheading{
+    font-size: 45px;
+    letter-spacing: 0.1em;
+    height: 15vw;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.methodWrapper{
+    display: flex;
+    width: 45%;
+    height:13vh;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.claimWrapper{
+    display: flex;
+    width: 45%;
+    height:13vh;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 7vw;
+}
+

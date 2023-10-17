@@ -8,8 +8,4 @@ export class CreateArticleDto {
     number: number;
     doi: string;
     comments: string;
-    summary: string;
-    seMethod: string;
-    claim: string;
-    evidence: string;
 }

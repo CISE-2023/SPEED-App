@@ -14,13 +14,23 @@ type Props = {
         number: number;
         doi: string;
         comments: string;
-    };
+        summary?: string;
+        seMethod?: string;
+        claim?: string;
+        evidence?: string;
+    };    
+    index: number;
+
     moderation?: boolean;
+    mSubmit?: (status: boolean, article: any) => void;
+
     analysis?: boolean;
-    modButton?: (status: boolean, article: any) => void;
+    aSubmit?: (article: any) => void;
 };
 
-const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
+const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: Props) => {
+    /* MODERATION */
+
     const critera = [
         "Not a Duplicate",
         "Not Previously Rejected",
@@ -49,7 +59,13 @@ const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
     useEffect(() => {
         setApproved(checkedState.every(value => value === true));
     }, [checkedState]);   
-    
+
+    /* ANALYSIS */
+
+    const onChange = (e: React.ChangeEvent<any>) => {
+        article = ({...article, [e.target.name]: e.target.value});
+    }
+
     return (
         <div>
             <strong>Article ID:</strong> {article?.id} <br/>
@@ -74,7 +90,7 @@ const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
 
             {moderation ? 
                 <>
-                    <div>
+                    <form onSubmit={ () => mSubmit?.(approved, article) }>
                         {critera.map((value, index) => {
                             return (
                                 <>
@@ -90,16 +106,74 @@ const ArticleCard = ({article, moderation, analysis, modButton}: Props) => {
                                 </>
                             );
                         })}
-                    </div>
 
-                    <br/>
-                        <button
-                            onClick={() => { modButton?.(approved, article), resetCheckboxes() }}
-                        >{approved === true ? "Approve" : "Reject"}</button>
+                        <br/>
+
+                        <input type="submit" value={approved === true ? "Approve" : "Reject"}/>
+                    </form>
+
+                    {/*<br/>
+
+                    <button
+                        onClick={() => { mSubmit?.(approved, article), resetCheckboxes() }}
+                    >{approved === true ? "Approve" : "Reject"}</button>*/}
                 </>
                 : null}
-            {analysis 
-                ? <><strong>This is the analysis page</strong><br/><br/></>
+            
+            {analysis ? 
+                <>
+                    <form id={`analysisForm-${index}`} onSubmit={ () => aSubmit?.(article) }>
+                        <label htmlFor={`summary-${index}`}><strong>Summary</strong></label><br/>
+                        <input
+                            type="text"
+                            id={`summary-${index}`}
+                            name="summary"
+                            required={true}
+                            value={ article.summary }
+                            onChange={ onChange }
+                        />
+
+                        <br/><br/>
+
+                        <label htmlFor={`method-${index}`}><strong>SE Method</strong></label><br/>
+                        <input
+                            type="text"
+                            id={`method-${index}`}
+                            name="seMethod"
+                            required={true}
+                            value={ article.seMethod }
+                            onChange={ onChange }
+                        />
+
+                        <br/><br/>
+
+                        <label htmlFor={`claim-${index}`}><strong>Claim</strong></label><br/>
+                        <input
+                            type="text"
+                            id={`claim-${index}`}
+                            name="claim"
+                            required={true}
+                            value={ article.claim }
+                            onChange={ onChange }
+                        />
+
+                        <br/><br/>
+
+                        <label htmlFor={`claim-${index}`}><strong>Evidence</strong></label><br/>
+                        <input
+                            type="text"
+                            id={`evidence-${index}`}
+                            name="evidence"
+                            required={true}
+                            value={ article.evidence }
+                            onChange={ onChange }
+                        />
+
+                        <br/><br/>
+ 
+                        <input type="submit" value="Submit Article"/>
+                    </form>
+                </>
                 : null}
             <br/><br/><br/>
         </div>
