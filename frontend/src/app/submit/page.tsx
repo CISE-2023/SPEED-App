@@ -1,13 +1,16 @@
 "use client";
 
+
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from 'axios';
 import emailjs from 'emailjs-com';
 
-const EMAILJS_SERVICE_ID = 'service_eor345g';
-const EMAILJS_TEMPLATE_ID = 'template_ujwxdsc';
-const EMAILJS_USER_ID = 'jUT_Gv6R2kw3dHSNG';
+require('dotenv').config();
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
 
 emailjs.init(EMAILJS_USER_ID);
 
@@ -54,7 +57,7 @@ export default function SubmitPage() {
         }); // Reset the article variable to it's default values once it has been posted to the API
 
         setTextEnabled(true); // Enable the confirmation text at the bottom of the page if the new article is successfully posted to the API
-        sendEmailNotification()
+        //sendEmail(); // Sends email notification to moderator
 
         setTimeout(() => {
             setTextEnabled(false); // Disable the confirmation text after a few seconds
@@ -64,16 +67,15 @@ export default function SubmitPage() {
           console.error(error);
       });
 
-      const sendEmailNotification = () => {
-        // Prepare email data
+      const sendEmail = () => {
         const emailParams = {
-          to_email: 'cise.speedapp@gmail.com', // Replace with the recipient's email
-          message: 'An article has been added to the queue.',
+          title: article.title,
+          comments: article.comments ? "Comments: "+article.comments : "" 
+
         };
-      
-        // Send the email using EmailJS
+        // Sends email
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
-          .then((response) => {
+        .then((response) => {
             console.log('Email sent:', response);
           })
           .catch((error) => {
