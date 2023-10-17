@@ -27,6 +27,7 @@ export default function SearchPage() {
 
     const [articles, setArticles] = useState<Article[]>([]);
     const [methods, setMethods] = useState<string[]>([]);
+    const [claims, setClaims] = useState<string[]>([]);
     const [seSelection, setSESelection] = useState("");
     const [claimSelection, setClaimSelection] = useState("");
 
@@ -57,6 +58,22 @@ export default function SearchPage() {
       useEffect(()=>{
         getArticleData();
         }, []);
+
+        // Update the claims state when the seSelection changes
+        useEffect(() => {
+            if (seSelection) {
+                const claimsForSelectedMethod = articles
+                    .filter((article) => article.seMethod === seSelection)
+                    .map((article) => article.claim);
+    
+                // Get unique claims
+                const uniqueClaims = Array.from(new Set(claimsForSelectedMethod));
+                setClaims(uniqueClaims as string[]);
+                console.log(claims);
+            } else {
+                setClaims([]); // Reset claims if no SE method selected
+            }
+        }, [seSelection, articles]);
 
     // function to check wether the claim dropdown should be disabled or not
     const check = () => {
@@ -97,8 +114,9 @@ export default function SearchPage() {
 
                 <Dropdown.Menu>
                     <Dropdown.Item onClick={() => setClaimSelection("")}>All Claims</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setClaimSelection("against")}>Against</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setClaimSelection("for")}>For</Dropdown.Item>
+                    {claims.map((claim) => (
+                        <Dropdown.Item key={claim} onClick={() => setClaimSelection(claim)}>{claim}</Dropdown.Item>
+                    ))}
                 </Dropdown.Menu>
             </Dropdown> 
                 <Link href={{pathname: "/results",query: { seSelection, claimSelection },}}>
