@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 import axios from 'axios';
 import emailjs from 'emailjs-com';
 
+// EmailJS
 require('dotenv').config();
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
 const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
-
 emailjs.init(EMAILJS_USER_ID);
 
 import style from "../styles/Submit.module.css";
@@ -67,10 +67,13 @@ export default function SubmitPage() {
           console.error(error);
       });
 
+      /* EMAILJS */
       const sendEmail = () => {
-        const emailParams = {
+        const emailParams = { // Sets values for message variables
+          role: "moderation",
           title: article.title,
-          comments: article.comments ? "Comments: "+article.comments : "" 
+          comments: article.comments ? "Comments: "+article.comments : "",
+          url: "http://localhost:3000/moderate" 
 
         };
         // Sends email

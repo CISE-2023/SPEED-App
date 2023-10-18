@@ -3,9 +3,17 @@
 // Packages
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 
 // Components
 import ArticleCard from "@/components/ArticleCard";
+
+// EmailJS
+require('dotenv').config();
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
+emailjs.init(EMAILJS_USER_ID);
 
 export default function ModerationPage() {
     const [articles, setArticles] = useState([]); // Initialise an array of articles using the useState hook
@@ -25,6 +33,7 @@ export default function ModerationPage() {
                         .catch((error) => {
                             console.error(error);
                         });
+                    //sendEmail(article); // Sends email notification to moderator
                 })
                 .catch((error) => {
                     console.error(error);
@@ -58,8 +67,25 @@ export default function ModerationPage() {
             ? 'There are currently no articles in the queue.' 
             : articles.map((article, index) => <ArticleCard article={article} moderation={true} modButton={approved} key={index}/>); // Map each retrieved article to a JSX component for rendering
 
+    /* EMAILJS */
+    const sendEmail = (article: any) => {
+        const emailParams = { // Sets values for message variables
+            role: "analysis",
+            title: article.title,
+            comments: article.comments ? "Comments: "+article.comments : "",
+            url: "http://localhost:3000/analyse" 
+        };
+        // Sends email
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+        .then((response) => {
+            console.log('Email sent:', response);
+            })
+            .catch((error) => {
+            console.error('Email error:', error);
+            });
+        };
+    
     /* RENDER */
-
     return (
         <div>
             <h1>Moderation Page</h1>
