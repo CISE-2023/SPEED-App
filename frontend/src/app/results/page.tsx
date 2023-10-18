@@ -78,28 +78,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
     return articles;
   };
 
-
-  // function to get the article data from the backend and filter them based on the search parameters
-  // const getArticleData = () => {
-  //   axios
-  //       .get('http://localhost:3001/analysis')
-  //       .then((response) => {
-  //           // Filter the articles here
-  //           const filteredArticles = response.data.filter((article: Article) => {
-  //             return (
-  //               (!searchParams.claimSelection || article.claim === searchParams.claimSelection) &&
-  //               (!searchParams.seSelection || article.seMethod === searchParams.seSelection)
-  //             );
-  //           });
-  //           setArticles(filteredArticles);
-  //       })
-  //       .catch((error) => {
-  //           console.error('Error retrieving a response from the backend server.');
-  //       });
-  // }
-
-
-
+  // function to get the article data from the backend
   const getArticleData = () => {
     axios
       .get('http://localhost:3001/analysis')
@@ -128,27 +107,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
         console.error('Error retrieving a response from the backend server.');
       });
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-  // get the article data from the backend when the page is loaded
+  // get the article data from the backend when the page is loaded and do get it again when the sort order changes
   useEffect(()=>{
     getArticleData();
 	}, [sortOrder])
