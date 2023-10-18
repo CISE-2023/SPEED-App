@@ -85,7 +85,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
           <Table>
             <thead>
               <tr>
-                <th>
+                <td>
                   <Image 
                   src={titleVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={toggleTitlesVisibility()} 
@@ -93,8 +93,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   width={20} height={20}
                   />
                   Titles
-                </th>
-                <th>
+                </td>
+                <td>
                   <Image 
                   src={authorVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                    onClick={toggleAuthorsVisibility()} 
@@ -102,8 +102,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                    width={20} height={20}
                    />
                   Authors
-                </th>
-                <th>
+                </td>
+                <td>
                   <Image 
                   src={publicationVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={togglePublicationsVisibility()} 
@@ -111,16 +111,16 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   width={20} height={20}
                   />
                   Publication Year
-                </th>
-                <th><Image 
+                </td>
+                <td><Image 
                 src={methodVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                 onClick={toggleMethodsVisibility()} 
                 alt={''} 
                 width={20} height={20}
                 />
                   SE Methods
-                </th>
-                <th>
+                </td>
+                <td>
                   <Image 
                   src={claimVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={toggleClaimsVisibility()} 
@@ -128,7 +128,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   width={20} 
                   height={20}/>
                   Claims
-                </th>
+                </td>
               </tr>
             </thead>
           </Table>
