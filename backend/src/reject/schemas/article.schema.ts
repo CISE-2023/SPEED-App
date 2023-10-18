@@ -1,12 +1,12 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-export type ArticleDocument = AnalysisArticle & Document;
+export type ArticleDocument = RejectedArticle & Document;
 
 @Schema()
-export class AnalysisArticle {
+export class RejectedArticle {
     @Prop()
-    id: string;
+    id: string; 
     
     @Prop()
     title: string;
@@ -31,18 +31,6 @@ export class AnalysisArticle {
 
     @Prop()
     comments: string;
-
-    @Prop()
-    summary: string;
-
-    @Prop()
-    seMethod: string;
-
-    @Prop()
-    claim: string;
-
-    @Prop()
-    evidence: string;
 }
 
-export const AnalysisSchema = SchemaFactory.createForClass(AnalysisArticle);
+export const ArticleSchema = SchemaFactory.createForClass(RejectedArticle);

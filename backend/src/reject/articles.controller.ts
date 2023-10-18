@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
 import { ArticlesService } from "./articles.service";
-import { AnalysisArticle } from "./schemas/article.schema";
+import { RejectedArticle } from "./schemas/article.schema";
 import { CreateArticleDto } from "./dto/create-article.dto";
 
-@Controller('analysis')
+@Controller('rejected')
 export class ArticlesController {
     constructor(private readonly articlesService: ArticlesService) {}
 
     @Get()
-    async getArticles(): Promise<AnalysisArticle[]> {
+    async getArticles(): Promise<RejectedArticle[]> {
         return this.articlesService.getArticles();
     }
 
@@ -18,7 +18,7 @@ export class ArticlesController {
     } 
 
     @Post()
-    async createArticle(@Body() createArticleDto: CreateArticleDto): Promise<AnalysisArticle> {
+    async createArticle(@Body() createArticleDto: CreateArticleDto): Promise<RejectedArticle> {
         return this.articlesService.createArticle(
             createArticleDto.id,
             createArticleDto.title, 
@@ -28,11 +28,7 @@ export class ArticlesController {
             createArticleDto.volume,
             createArticleDto.number,
             createArticleDto.doi,
-            createArticleDto.comments,
-            createArticleDto.summary,
-            createArticleDto.seMethod,
-            createArticleDto.claim,
-            createArticleDto.evidence
+            createArticleDto.comments
         );
     }
 
