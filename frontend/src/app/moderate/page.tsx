@@ -12,6 +12,7 @@ import ArticleCard from "@/components/ArticleCard";
 require('dotenv').config();
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_USERTEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_USERTEMPLATE_ID || "";
 const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
 emailjs.init(EMAILJS_USER_ID);
 
@@ -33,7 +34,8 @@ export default function ModerationPage() {
                         .catch((error) => {
                             console.error(error);
                         });
-                    //sendEmail(article); // Sends email notification to moderator
+                    //sendEmail(article); // Sends email notification to analyst
+                    sendUserEmail(article, status);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -41,7 +43,11 @@ export default function ModerationPage() {
         } else { // Send article to rejection queue            
             axios
                 .get(`http://localhost:3001/articles/${article.id}`)
-                .then((response) => console.log(response.data));
+                .then((response) => {
+                    console.log(response.data);
+                    sendUserEmail(article, status);
+                    }
+                );
         }
     }
 
@@ -77,6 +83,25 @@ export default function ModerationPage() {
         };
         // Sends email
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+        .then((response) => {
+            console.log('Email sent:', response);
+            })
+            .catch((error) => {
+            console.error('Email error:', error);
+            });
+        };
+
+    const sendUserEmail = (article: any, status: boolean) => {
+        const emailParams = { // Sets values for message variables
+            title: article.title,
+            status: status ? "Approved" : "Rejected",
+            result: status ? "Your article was approved, it will be updated to the website shortly." : "Your article was rejected, it did not meet our submission guidelines."
+
+        };
+        console.log("TITLE"+article.title);
+
+        // Sends email
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_USERTEMPLATE_ID, emailParams)
         .then((response) => {
             console.log('Email sent:', response);
             })
