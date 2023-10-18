@@ -35,7 +35,7 @@ export default function ModerationPage() {
                             console.error(error);
                         });
                     //sendEmail(article); // Sends email notification to analyst
-                    sendUserEmail(article, status);
+                    //sendUserEmail(article, status);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -45,7 +45,7 @@ export default function ModerationPage() {
                 .get(`http://localhost:3001/articles/${article.id}`)
                 .then((response) => {
                     console.log(response.data);
-                    sendUserEmail(article, status);
+                    //sendUserEmail(article, status);
                     }
                 );
         }
