@@ -33,9 +33,6 @@ export class AnalysisArticle {
     comments: string;
 
     @Prop()
-    summary: string;
-
-    @Prop()
     seMethod: string;
 
     @Prop()

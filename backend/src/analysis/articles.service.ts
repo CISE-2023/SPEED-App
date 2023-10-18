@@ -15,7 +15,7 @@ export class ArticlesService {
     }
 
     async createArticle(id: string, title: string, source: string, publication: number, author: string, volume: string, number: number, doi: string, comments: string, 
-        summary: string, seMethod: string, claim: string, evidence: string): 
+        seMethod: string, claim: string, evidence: string): 
     Promise<AnalysisArticle> {
         return this.articlesRepository.create({
             id,
@@ -27,7 +27,6 @@ export class ArticlesService {
             number,
             doi,
             comments,
-            summary,
             seMethod,
             claim,
             evidence

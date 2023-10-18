@@ -29,7 +29,6 @@ export class ArticlesController {
             createArticleDto.number,
             createArticleDto.doi,
             createArticleDto.comments,
-            createArticleDto.summary,
             createArticleDto.seMethod,
             createArticleDto.claim,
             createArticleDto.evidence
