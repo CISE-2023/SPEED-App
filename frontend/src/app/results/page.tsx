@@ -24,8 +24,12 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
     claim: string;
     evidence: string;
   }
+  // state for the articles
   const [articles, setArticles] = useState<Article[]>([]);
-
+  
+  // state for the sort order of the table
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | null>(null);
+  
   // visibility states for the table columns
   const [titleVisibility, setTitleVisibility] = useState<boolean>(false);
   const [authorVisibility, setAuthorVisibility] = useState<boolean>(false);
@@ -50,30 +54,104 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
     setClaimVisibility(!claimVisibility);
   };
 
+  // function to toggle the sort order of the table
+  const toggleSortOrder = () => {
+    if (sortOrder === 'asc') {
+      setSortOrder('desc');
+    } else {
+      setSortOrder('asc');
+    }
+    console.log(sortOrder);
+  };
+
+  // function to sort the articles based on the sort order
+  const sortArticles = (articles: Article[]): Article[] => {
+    if (sortOrder) {
+      return [...articles].sort((a, b) => {
+        if (sortOrder === 'asc') {
+          return a.publication - b.publication;
+        } else {
+          return b.publication - a.publication;
+        }
+      });
+    }
+    return articles;
+  };
+
 
   // function to get the article data from the backend and filter them based on the search parameters
+  // const getArticleData = () => {
+  //   axios
+  //       .get('http://localhost:3001/analysis')
+  //       .then((response) => {
+  //           // Filter the articles here
+  //           const filteredArticles = response.data.filter((article: Article) => {
+  //             return (
+  //               (!searchParams.claimSelection || article.claim === searchParams.claimSelection) &&
+  //               (!searchParams.seSelection || article.seMethod === searchParams.seSelection)
+  //             );
+  //           });
+  //           setArticles(filteredArticles);
+  //       })
+  //       .catch((error) => {
+  //           console.error('Error retrieving a response from the backend server.');
+  //       });
+  // }
+
+
+
   const getArticleData = () => {
     axios
-        .get('http://localhost:3001/analysis')
-        .then((response) => {
-            // Filter the articles here
-            const filteredArticles = response.data.filter((article: Article) => {
-              return (
-                (!searchParams.claimSelection || article.claim === searchParams.claimSelection) &&
-                (!searchParams.seSelection || article.seMethod === searchParams.seSelection)
-              );
-            });
-            setArticles(filteredArticles);
-        })
-        .catch((error) => {
-            console.error('Error retrieving a response from the backend server.');
+      .get('http://localhost:3001/analysis')
+      .then((response) => {
+        const filteredArticles = response.data.filter((article: Article) => {
+          return (
+            (!searchParams.claimSelection || article.claim === searchParams.claimSelection) &&
+            (!searchParams.seSelection || article.seMethod === searchParams.seSelection)
+          );
         });
-  }
+
+        if (sortOrder) {
+          const sorted = [...filteredArticles].sort((a, b) => {
+            if (sortOrder === 'asc') {
+              return a.publication - b.publication;
+            } else {
+              return b.publication - a.publication;
+            }
+          });
+          setArticles(sorted);
+        } else {
+          setArticles(filteredArticles);
+        }
+      })
+      .catch((error) => {
+        console.error('Error retrieving a response from the backend server.');
+      });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   // get the article data from the backend when the page is loaded
   useEffect(()=>{
     getArticleData();
-	}, [])
+	}, [sortOrder])
 
     return (
       <div className="page">
@@ -88,7 +166,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                 <td>
                   <Image 
                   src={titleVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
-                  onClick={toggleTitlesVisibility()} 
+                  onClick={toggleTitlesVisibility()}
+                  role="button" 
                   alt={''} 
                   width={20} height={20}
                   />
@@ -97,7 +176,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                 <td>
                   <Image 
                   src={authorVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
-                   onClick={toggleAuthorsVisibility()} 
+                   onClick={toggleAuthorsVisibility()}
+                   role="button" 
                    alt={''}
                    width={20} height={20}
                    />
@@ -107,6 +187,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   <Image 
                   src={publicationVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={togglePublicationsVisibility()} 
+                  role="button"
                   alt={''} 
                   width={20} height={20}
                   />
@@ -115,6 +196,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                 <td><Image 
                 src={methodVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                 onClick={toggleMethodsVisibility()} 
+                role="button"
                 alt={''} 
                 width={20} height={20}
                 />
@@ -124,6 +206,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   <Image 
                   src={claimVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={toggleClaimsVisibility()} 
+                  role="button"
                   alt={''} 
                   width={20} 
                   height={20}/>
@@ -140,7 +223,14 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
               <tr>
                 <th hidden={titleVisibility}>Title</th>
                 <th hidden={authorVisibility}>Author(s)</th>
-                <th hidden={publicationVisibility}>Publication Year</th>
+                <th hidden={publicationVisibility}>Publication Year
+                <Image src="/mini-arrow-double-svgrepo-com.svg"
+                  onClick={toggleSortOrder} 
+                  role="button"
+                  alt={''} 
+                  width={20} 
+                  height={20}/>
+                  </th>
                 <th hidden={methodVisibility}>SE Method</th>
                 <th hidden={claimVisibility}>Claim</th>
               </tr>
