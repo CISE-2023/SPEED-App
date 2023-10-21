@@ -36,6 +36,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   const [publicationVisibility, setPublicationVisibility] = useState<boolean>(false);
   const [methodVisibility, setMethodVisibility] = useState<boolean>(false);
   const [claimVisibility, setClaimVisibility] = useState<boolean>(false);
+  const [summaryVisibility, setSummaryVisibility] = useState<boolean>(false);
 
   // functions to toggle the visibility of the table columns
   const toggleTitlesVisibility = () => () => {
@@ -52,6 +53,9 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   };
   const toggleClaimsVisibility = () => () => {
     setClaimVisibility(!claimVisibility);
+  };
+  const toggleSummaryVisibility = () => () => {
+    setSummaryVisibility(!summaryVisibility);
   };
 
   // function to toggle the sort order of the table
@@ -172,6 +176,16 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   height={20}/>
                   Claims
                 </td>
+                <td>
+                  <Image 
+                  src={titleVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
+                  onClick={toggleSummaryVisibility()}
+                  role="button" 
+                  alt={''} 
+                  width={20} height={20}
+                  />
+                  Summary
+                </td>
               </tr>
             </thead>
           </Table>
@@ -193,6 +207,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   </th>
                 <th hidden={methodVisibility}>SE Method</th>
                 <th hidden={claimVisibility}>Claim</th>
+                <th hidden={summaryVisibility}>Summary</th>
               </tr>
             </thead>
             <tbody>
@@ -203,6 +218,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   <td hidden={publicationVisibility}>{article.publication}</td>
                   <td hidden={methodVisibility}>{article.seMethod}</td>
                   <td hidden={claimVisibility}>{article.claim}</td>
+                  <td hidden={summaryVisibility}>{article.summary}</td>
                 </tr>
               ))}
             </tbody>

@@ -64,7 +64,7 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
     /* ANALYSIS */
 
     const onChange = (e: React.ChangeEvent<any>) => {
-        article = ({...article, [e.target.name]: e.target.value});
+        article = ({...article, [e.target.name]: e.target.value.toLowerCase()});
     }
 
     return (
