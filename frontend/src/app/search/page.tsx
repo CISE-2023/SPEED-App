@@ -34,7 +34,7 @@ export default function SearchPage() {
     // function to get the article data from the backend and filter them based on the search parameters
     const getArticleData = () => {
         axios
-            .get('http://localhost:3001/analysis')
+            .get('https://speed-app-backend.vercel.app/analysis')
             .then((response) => {
             const articlesData = response.data;
       

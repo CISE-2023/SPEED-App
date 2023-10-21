@@ -14,10 +14,10 @@ export default function AnalysisPage() {
     const onSubmit = (article: any) => {
         console.log("The article has been analysed and submitted to the SPEED database!");
         axios  
-            .post('http://localhost:3001/analysis', article) // Send article to the SPEED database
+            .post('https://speed-app-backend.vercel.app/analysis', article) // Send article to the SPEED database
             .then(() => {
                 axios
-                    .delete(`http://localhost:3001/moderate/${article.id}`) // Remove the submitted article from the analysis queue once it has been completed analysis
+                    .delete(`https://speed-app-backend.vercel.app/moderate/${article.id}`) // Remove the submitted article from the analysis queue once it has been completed analysis
                     .catch((error) => {
                         console.error(error);
                     });
@@ -31,7 +31,7 @@ export default function AnalysisPage() {
 
     const getArticleData = () => {
         axios
-            .get('http://localhost:3001/moderate') // Request data from the API (at the URL of our backend server) using the GET method
+            .get('https://speed-app-backend.vercel.app/moderate') // Request data from the API (at the URL of our backend server) using the GET method
             .then((response) => {
                 setArticles(response.data); // Use the data retrieved from the GET method to populate the articles variable
             })

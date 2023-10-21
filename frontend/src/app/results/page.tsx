@@ -89,7 +89,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   // function to get the article data from the backend
   const getArticleData = () => {
     axios
-      .get('http://localhost:3001/analysis')
+      .get('https://speed-app-backend.vercel.app/analysis')
       .then((response) => {
         const filteredArticles = response.data.filter((article: Article) => {
           return (
