@@ -85,13 +85,14 @@ export default function SearchPage() {
     }
 
     return (
-        <div>
-            <h1>SEARCH</h1>
-            <p>Select your software engineering method of interest and claim.</p>
+        <div className="page">
+            <div className="pageContents">
+            <h1 className="heading">SEARCH</h1>
+            <p className="text">Select your software engineering method of interest and claim.</p>
             
             <form>
             {/*SE Method dropdown*/}
-            <h2>SE Method</h2>
+            <h2 className="subHeading">SE Method</h2>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     { seSelection ? seSelection : "Select SE Method"}
@@ -104,9 +105,8 @@ export default function SearchPage() {
                     ))}
                 </Dropdown.Menu>
             </Dropdown>  
-            <br />
             {/*Claim dropdown*/}
-            <h2>Claim</h2>
+            <h2 className="subHeading">Claim</h2>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic" disabled={check()}>
                     { claimSelection ? claimSelection : "Select Claim"}
@@ -120,9 +120,10 @@ export default function SearchPage() {
                 </Dropdown.Menu>
             </Dropdown> 
                 <Link href={{pathname: "/results",query: { seSelection, claimSelection },}}>
-                    <input type="submit" />
+                    <input className="mxSubmit submit" type="submit" />
                 </Link>
             </form>    
+            </div>
         </div>
     );
 }
