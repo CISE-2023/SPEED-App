@@ -14,14 +14,36 @@
 
 .app {
     background-image: url('./images/background.svg');
-    min-width: 100vw;
-    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+// Hide Scrollbar
+.app::-webkit-scrollbar {
+    display: none; // Chrome, Opera, Safari
+  }
+
+  .app::-webkit-scrollbar {
+    -ms-overflow-style: none;  // IE and Edge 
+    scrollbar-width: none;  // Firefox 
+  }
 
 .page {
     margin-top: 2.5vh;
     width: 80vw;
-    height: 84vh;
+    height: 90vh;
+    margin-top: 10vh;
+    margin: 3vh auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.pageAuto {
+    margin-top: 2.5vh;
+    width: 80vw;
+    height: auto;
     margin-top: 10vh;
     margin: 3vh auto;
     background-color: white;
@@ -45,7 +67,15 @@
     color: #38729D;
     letter-spacing: 0.1em;
     font-weight: 500;
-    
+}
+
+.subHeading {
+    font-family: 'Inter';
+    font-size: 40px;
+    margin-top: 5vh;
+    color: #38729D;
+    letter-spacing: 0.1em;
+    font-weight: 500;
 }
 
 .text {
@@ -95,7 +125,7 @@
 .submit{
     width: 12vw;
     height: 6.5vh;
-    background: #45AADD;
+    background: #38729D;
     border: 0px solid #45AADD;
     border-radius: 5px;
     color: white;
@@ -119,4 +149,18 @@
 
 .dropdown button:active, .dropdown button:hover{
     background-color: #4592dd !important;
+}
+
+.mxSubmit{
+    margin-top: 30px;
+}
+
+.articleSubmitButton {
+    align-self: center;
+    margin-left: 100px;
+}
+
+.input {
+    display: flex;
+    justify-content: space-between;
 }

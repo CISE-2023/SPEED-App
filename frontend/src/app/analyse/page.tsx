@@ -3,6 +3,7 @@
 // Packages
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import style from "../styles/ArticleCard.module.css";
 
 // Components
 import ArticleCard from "@/components/ArticleCard";
@@ -52,8 +53,12 @@ export default function AnalysisPage() {
 
     return (
         <div>
-            <h1>Analysis Page</h1>
-            <div>{articlesList}</div>
+             <div className="pageAuto">
+            <div>
+                <h1 className={style.heading}>Analyse Articles:</h1>
+                {articlesList}
+            </div>
+        </div>
         </div>
     );
 }
