@@ -114,7 +114,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
 	}, [sortOrder])
 
     return (
-      <div className="page">
+      <div className="pageAuto">
         <div className="pageContents">
           <h1 className="heading">Search Results</h1>
           <p className="text">The following table contains the results of your search.</p>

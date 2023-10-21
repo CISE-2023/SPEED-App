@@ -16,14 +16,34 @@
     background-image: url('./images/background.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    min-width: 100vw;
-    min-height: 100vh;
 }
+
+// Hide Scrollbar
+.app::-webkit-scrollbar {
+    display: none; // Chrome, Opera, Safari
+  }
+
+  .app::-webkit-scrollbar {
+    -ms-overflow-style: none;  // IE and Edge 
+    scrollbar-width: none;  // Firefox 
+  }
 
 .page {
     margin-top: 2.5vh;
     width: 80vw;
-    height: 84vh;
+    height: 90vh;
+    margin-top: 10vh;
+    margin: 3vh auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.pageAuto {
+    margin-top: 2.5vh;
+    width: 80vw;
+    height: auto;
     margin-top: 10vh;
     margin: 3vh auto;
     background-color: white;

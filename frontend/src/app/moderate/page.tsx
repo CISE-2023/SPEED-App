@@ -3,6 +3,7 @@
 // Packages
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import style from "../styles/ArticleCard.module.css";
 
 // Components
 import ArticleCard from "@/components/ArticleCard";
@@ -70,9 +71,11 @@ export default function ModerationPage() {
     /* RENDER */
 
     return (
-        <div>
-            <h1>Moderation Page</h1>
-            <div>{articlesList}</div>
+        <div className="pageAuto">
+            <div>
+                <h1 className={style.heading}>Moderate Articles:</h1>
+                {articlesList}
+            </div>
         </div>
     );
 }

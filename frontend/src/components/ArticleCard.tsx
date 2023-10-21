@@ -1,6 +1,7 @@
 "use client";
 
 // Packages
+import style from "../app/styles/ArticleCard.module.css";
 import React, { useEffect, useState } from 'react';
 
 type Props = {
@@ -67,58 +68,62 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
     }
 
     return (
-        <div>
-            <strong>Article ID:</strong> {article?.id} <br/>
-            <strong>Article Title:</strong> {article.title} <br/>
-            <strong>Source:</strong> {article.source} <br/>
-            <strong>publication:</strong> {article.publication} <br/>
-            <strong>Author(s):</strong> {article.author} <br/>
-            {article.volume 
-                ?  <><strong>Volume:</strong> {article.volume} <br/></> 
-                : null}
-            {article.number 
-                ?  <><strong>Number:</strong> {article.number} <br/></> 
-                : null}
-            {article.doi
-                ?  <><strong>DOI:</strong> {article.doi} <br/></> 
-                : null}
-            {article.comments
-                ?  <><strong>Comments:</strong> {article.comments} <br/></> 
-                : null}
+        <div className={style.container}>
+            <div className={style.articleContainer}>
+                <div>
+                    <h2 className={style.subHeading}>Article ID:</h2>
+                    <p className={style.text}>{article?.id}</p>
+                    <h2 className={style.subHeading}>Article Title:</h2>
+                    <p className={style.text}>{article.title}</p>
+                    <h2 className={style.subHeading}>Source:</h2>
+                    <p className={style.text}>{article.source}</p>
+                    <h2 className={style.subHeading}>publication:</h2>
+                    <p className={style.text}>{article.publication}</p>
+                    <h2 className={style.subHeading}>Author(s):</h2>
+                    <p className={style.text}>{article.author}</p>
+                    {article.volume 
+                        ?  <><div><h2 className={style.subHeading}>Volume:</h2> <p className={style.text}>{article.volume}</p></div></> 
+                        : null}
+                    {article.number 
+                        ?  <><div><h2 className={style.subHeading}>Number:</h2> <p className={style.text}>{article.number}</p></div></> 
+                        : null}
+                    {article.doi
+                        ?  <><div><h2 className={style.subHeading}>DOI:</h2> <p className={style.text}>{article.doi}</p></div></> 
+                        : null}
+                    {article.comments
+                        ?  <><div><h2 className={style.subHeading}>Comments:</h2> <p className={style.text}>{article.comments}</p></div></> 
+                        :    null}
 
-            <br/>
+                </div>
 
             {moderation ? 
                 <>
-                    <form onSubmit={ () => mSubmit?.(approved, article) }>
-                        {critera.map((value, index) => {
-                            return (
-                                <>
-                                    <input 
-                                        type="checkbox" 
-                                        id={`criteria-${index}`} 
-                                        name={value} 
-                                        value={value}
-                                        checked={checkedState[index]}
-                                        onChange={() => handleOnChange(index)}
-                                    /> 
-                                    <label>&nbsp;{value}</label><br/>
-                                </>
-                            );
-                        })}
-
-                        <br/>
-
-                        <input type="submit" value={approved === true ? "Approve" : "Reject"}/>
-                    </form>
-
-                    {/*<br/>
-
-                    <button
-                        onClick={() => { mSubmit?.(approved, article), resetCheckboxes() }}
-                    >{approved === true ? "Approve" : "Reject"}</button>*/}
+                    <div className={style.checkBoxWrapper}>
+                        <form onSubmit={ () => mSubmit?.(approved, article) }>
+                            {critera.map((value, index) => {
+                                return (
+                                    <>
+                                        <div style={{display: "flex"}}>
+                                            <input 
+                                                key={index}
+                                                type="checkbox" 
+                                                id={`criteria-${index}`} 
+                                                name={value} 
+                                                value={value}
+                                                checked={checkedState[index]}
+                                                onChange={() => handleOnChange(index)}
+                                                /> 
+                                            <label className={style.text}>&nbsp;{value}</label><br/>
+                                        </div>
+                                    </>
+                                );
+                            })}
+                            <input type="submit" className={approved === true ? `${style.approve}` : `${style.reject}`} value={approved === true ? "Approve" : "Reject"}/>
+                        </form>
+                    </div>
                 </>
                 : null}
+                </div>
             
             {analysis ? 
                 <>
