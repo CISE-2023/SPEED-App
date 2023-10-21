@@ -39,7 +39,7 @@ export default function SubmitPage() {
     e.preventDefault();
 
     axios
-      .post('http://localhost:3001/articles', article)
+      .post('https://speed-app-backend.vercel.app/articles', article)
       .then((res) => {
         setArticle({
           id: uuidv4(),

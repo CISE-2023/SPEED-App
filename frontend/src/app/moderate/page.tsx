@@ -25,10 +25,10 @@ export default function ModerationPage() {
 
         if(status) {            
             axios
-                .post('http://localhost:3001/moderate', article) // Send article to analysis queue
+                .post('https://speed-app-backend.vercel.app/moderate', article) // Send article to analysis queue
                 .then(() => {
                     axios
-                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst        
+                        .delete(`https://speed-app-backend.vercel.app/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst        
                         .catch((error) => {
                             console.error(error);
                         });
@@ -40,10 +40,10 @@ export default function ModerationPage() {
                 //sendUserEmail(article, status); // Sends email notification to user  
         } else {             
             axios
-                .post('http://localhost:3001/rejected', article) // Send article to rejection queue
+                .post('https://speed-app-backend.vercel.app/rejected', article) // Send article to rejection queue
                 .then(() => {
                     axios
-                        .delete(`http://localhost:3001/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
+                        .delete(`https://speed-app-backend.vercel.app/articles/${article.id}`) // Remove approved article from moderation queue after sending to analyst
                         .then(() => {
                             getArticleData();
                         })            
@@ -62,7 +62,7 @@ export default function ModerationPage() {
 
     const getArticleData = () => {
         axios
-            .get('http://localhost:3001/articles') // Request data from the API (at the URL of our backend server) using the GET method
+            .get('https://speed-app-backend.vercel.app/articles') // Request data from the API (at the URL of our backend server) using the GET method
             .then((response) => {
                 setArticles(response.data); // Use the data retrieved from the GET method to populate the articles variable
             })
