@@ -96,8 +96,8 @@ export default function SearchPage() {
                     <div className={style.methodWrapper}>
                         <h2 className={style.subHeading}>SE Method</h2>
                         <div style={{marginRight: "3vw"}}></div>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown id="dropdown">
+                            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdownMenu">
                                 { seSelection ? seSelection : "Select SE Method"}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
@@ -114,8 +114,8 @@ export default function SearchPage() {
                     <div className={style.claimWrapper}>
                         <h2 className={style.subHeading} style={{marginLeft: "2.5vw"}}>Claim</h2>
                         <div style={{marginLeft: "1,5vw"}}>
-                            <Dropdown>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic" disabled={check()}>
+                            <Dropdown id="dropdown">
+                                <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdownMenu" disabled={check()}>
                                     { claimSelection ? claimSelection : "Select Claim"}
                                     </Dropdown.Toggle>
 
