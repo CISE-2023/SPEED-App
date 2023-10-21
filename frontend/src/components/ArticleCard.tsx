@@ -93,7 +93,6 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                     {article.comments
                         ?  <><div><h2 className={style.subHeading}>Comments:</h2> <p className={style.text}>{article.comments}</p></div></> 
                         :    null}
-
                 </div>
 
             {moderation ? 
@@ -127,60 +126,66 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
             
             {analysis ? 
                 <>
-                    <form id={`analysisForm-${index}`} onSubmit={ () => aSubmit?.(article) }>
-                        <label htmlFor={`summary-${index}`}><strong>Summary</strong></label><br/>
-                        <input
-                            type="text"
-                            id={`summary-${index}`}
-                            name="summary"
-                            required={true}
-                            value={ article.summary }
-                            onChange={ onChange }
-                        />
+                    <div className={style.textFormWrapper}>
+                        <form id={`analysisForm-${index}`} onSubmit={ () => aSubmit?.(article) }>
+                            <div>
+                                <div className={style.input}>
+                                    <label htmlFor={`summary-${index}`}><h2 className={style.subHeading}>Summary:</h2></label>
+                                    <input
+                                        type="text"
+                                        id={`summary-${index}`}
+                                        name="summary"
+                                        required={true}
+                                        value={ article.summary }
+                                        onChange={ onChange }
+                                        className={style.textInput}
+                                    />
+                                </div>
 
-                        <br/><br/>
+                                <div className={style.input}>
+                                    <label htmlFor={`method-${index}`}><h2 className={style.subHeading}>SE Method:</h2></label>
+                                    <input
+                                        type="text"
+                                        id={`method-${index}`}
+                                        name="seMethod"
+                                        required={true}
+                                        value={ article.seMethod }
+                                        onChange={ onChange }
+                                        className={style.textInput}
+                                    />
+                                </div>
 
-                        <label htmlFor={`method-${index}`}><strong>SE Method</strong></label><br/>
-                        <input
-                            type="text"
-                            id={`method-${index}`}
-                            name="seMethod"
-                            required={true}
-                            value={ article.seMethod }
-                            onChange={ onChange }
-                        />
+                                <div className={style.input}> 
+                                    <label htmlFor={`claim-${index}`}><h2 className={style.subHeading}>Claim:</h2></label>
+                                    <input
+                                        type="text"
+                                        id={`claim-${index}`}
+                                        name="claim"
+                                        required={true}
+                                        value={ article.claim }
+                                        onChange={ onChange }
+                                        className={style.textInput}
+                                    />
+                                </div>
 
-                        <br/><br/>
-
-                        <label htmlFor={`claim-${index}`}><strong>Claim</strong></label><br/>
-                        <input
-                            type="text"
-                            id={`claim-${index}`}
-                            name="claim"
-                            required={true}
-                            value={ article.claim }
-                            onChange={ onChange }
-                        />
-
-                        <br/><br/>
-
-                        <label htmlFor={`claim-${index}`}><strong>Evidence</strong></label><br/>
-                        <input
-                            type="text"
-                            id={`evidence-${index}`}
-                            name="evidence"
-                            required={true}
-                            value={ article.evidence }
-                            onChange={ onChange }
-                        />
-
-                        <br/><br/>
- 
-                        <input type="submit" value="Submit Article"/>
-                    </form>
+                                <div className={style.input}>
+                                    <label htmlFor={`claim-${index}`}><h2 className={style.subHeading}>Evidence:</h2></label>
+                                    <input
+                                        type="text"
+                                        id={`evidence-${index}`}
+                                        name="evidence"
+                                        required={true}
+                                        value={ article.evidence }
+                                        onChange={ onChange }
+                                        className={style.textInput}
+                                    />
+                                </div>
+                            </div>
+                            <input className="submit articleSubmitButton" type="submit" value="Submit Article"/>
+                        </form>
+                    </div>
                 </>
                 : null}
-            <br/><br/><br/>
         </div>
     )
 }

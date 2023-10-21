@@ -8,13 +8,14 @@
     height: 90%;
     margin-top: 10px;
     background-color: rgba(56, 114, 157, .2);
+    padding-top: 10px;
 }
 
 .articleContainer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     margin-left: 10px;
     max-width: 90%;
     min-width: 90%;
@@ -36,7 +37,6 @@
     color: #38729D;
     letter-spacing: 0.1em;
     font-weight: 500;
-    text-decoration: underline;
 }
 
 .text {
@@ -79,9 +79,27 @@
     width: 100%;
 }
 
-.blueLine{
-    background-image: url('./images/blueLine.svg');
-    width: 3px;
-    height: 170px;
-    margin-left: 6.5vw;
+.textFormWrapper{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
+
+.textInput {
+    width: 100%;
+    border: none;
+    justify-content: space-around;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    height: 5vh;
+}
+
+.textInput:focus {
+    outline: none;
+}
+
+
+
+
