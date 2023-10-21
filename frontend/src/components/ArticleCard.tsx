@@ -64,7 +64,12 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
     /* ANALYSIS */
 
     const onChange = (e: React.ChangeEvent<any>) => {
-        article = ({...article, [e.target.name]: e.target.value.toLowerCase()});
+
+        if (e.target.name === "seMethod" || e.target.name === "claim") {
+            article = ({...article, [e.target.name]: e.target.value.toLowerCase()});
+        } else {
+            article = ({...article, [e.target.name]: e.target.value});
+        }
     }
 
     return (
