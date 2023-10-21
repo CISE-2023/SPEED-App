@@ -3,8 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from 'axios';
+import emailjs from '@emailjs/browser';
 
 import style from "../styles/Submit.module.css";
+
+require('dotenv').config();
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
+emailjs.init(EMAILJS_USER_ID);
 
 export default function SubmitPage() {
   const router = useRouter();
@@ -48,6 +55,8 @@ export default function SubmitPage() {
 
         setTextEnabled(true); // Enable the confirmation text at the bottom of the page if the new article is successfully posted to the API
 
+        //sendEmail(); // Sends email notification to moderator
+
         setTimeout(() => {
             setTextEnabled(false); // Disable the confirmation text after a few seconds
         }, 2000)
@@ -56,6 +65,26 @@ export default function SubmitPage() {
           console.error(error);
       });
   }
+
+  /* EMAILJS */
+  const sendEmail = () => {
+    const emailParams = {
+      role: "moderation",
+      title: article.title,
+      comments: article.comments ? "Comments: "+article.comments : "",
+      url: "http://localhost:3000/moderate" 
+    };
+
+    // Sends email
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+    .then((response) => {
+        console.log('Email sent:', response);
+      })
+      .catch((error) => {
+        console.error('Email error:', error);
+      });
+  };
+  
 
   return (
     <div className="page">
