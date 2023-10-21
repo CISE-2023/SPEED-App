@@ -15,7 +15,7 @@
 .text {
     font-family: 'Inter';
     font-style: normal;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
 }
 
@@ -29,7 +29,11 @@
 }
 
 .button {
-    width: 15vw;
-    height: 7.5vh;
+    width: 12vw;
+    height: 6.5vh;
+    background: white;
+    border: none;
+    border-radius: 5px;
+    color: black;
     font-size: 20px;
 }
