@@ -50,7 +50,7 @@ export default function SearchPage() {
             console.log(methods);
           })
           .catch((error) => {
-            console.error('Error retrieving a response from the backend server.');
+            console.error('Error retrieving a response from the backend server.'); 
           });
       };
 
