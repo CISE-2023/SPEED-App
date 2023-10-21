@@ -19,10 +19,10 @@ export default function Layout({
   return (
     <html lang="en">
       <body className="app">
-        <div className="fixed">
-        <PopulatedNavBar />
+        <div>
+          <PopulatedNavBar />
+          {children}      
         </div>
-        {children}      
       </body>
     </html>
   )
