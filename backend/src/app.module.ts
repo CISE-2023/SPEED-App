@@ -6,10 +6,14 @@ import { AppService } from './app.service';
 import { ArticlesModule } from './articles/articles.module';
 import { AnalysisModule } from './analysis/articles.module';
 import { ModerateModule } from './moderate/articles.module';
+import { RejecteModule } from './reject/articles.module';
+
+require('dotenv').config();
+const db = process.env.MONGO_URI;
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb+srv://group507:XzGzXcpaKJelTB2C@product-data.9a4dcil.mongodb.net/?retryWrites=true&w=majority'), 
-  ArticlesModule, AnalysisModule, ModerateModule],
+  imports: [MongooseModule.forRoot(db), 
+  ArticlesModule, AnalysisModule, ModerateModule, RejecteModule],
   controllers: [AppController],
   providers: [AppService],
 })

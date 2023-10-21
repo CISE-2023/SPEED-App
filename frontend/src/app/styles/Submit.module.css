@@ -1,0 +1,48 @@
+.wrapper{
+    display: flex;
+    width: 60vw;
+    height: 40vh;
+    justify-content: space-between;
+}
+
+.columnWrapper{
+    display: flex;
+    width: 45%;
+    flex-direction: column;
+}
+
+.rowWrapper{
+    display: flex;
+    justify-content: space-between
+}
+
+.submit{
+    width: 15vw;
+    height: 7.5vh;
+    font-size: 20px;
+}
+
+.textArea{
+    height: 17.5vh;
+    resize: none;
+    box-sizing: border-box;
+    border: 1px solid #C4C9CF;
+    border-radius: 5px;
+}
+
+.endWrapper{
+    display: flex;
+    width: 60vw;
+    height: 30%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.inputBox {
+box-sizing: border-box;
+height: 5vh;
+background: #FFFFFF;
+border: 1px solid #C4C9CF;
+border-radius: 5px;
+margin-bottom: 4vh;
+}
