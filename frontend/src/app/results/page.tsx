@@ -37,6 +37,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   const [methodVisibility, setMethodVisibility] = useState<boolean>(false);
   const [claimVisibility, setClaimVisibility] = useState<boolean>(false);
   const [summaryVisibility, setSummaryVisibility] = useState<boolean>(false);
+  const [evidenceVisibility, setEvidenceVisibility] = useState<boolean>(false);
 
   // functions to toggle the visibility of the table columns
   const toggleTitlesVisibility = () => () => {
@@ -56,6 +57,9 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
   };
   const toggleSummaryVisibility = () => () => {
     setSummaryVisibility(!summaryVisibility);
+  };
+  const toggleEvidenceVisibility = () => () => {
+    setEvidenceVisibility(!evidenceVisibility);
   };
 
   // function to toggle the sort order of the table
@@ -157,7 +161,8 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   />
                   Publication Year
                 </td>
-                <td><Image 
+                <td>
+                  <Image 
                 src={methodVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                 onClick={toggleMethodsVisibility()} 
                 role="button"
@@ -178,13 +183,23 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                 </td>
                 <td>
                   <Image 
-                  src={titleVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
+                  src={summaryVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
                   onClick={toggleSummaryVisibility()}
                   role="button" 
                   alt={''} 
                   width={20} height={20}
                   />
                   Summary
+                </td>
+                <td>
+                  <Image 
+                  src={evidenceVisibility ? '/mini-arrow-down-svgrepo-com.svg' : '/cross-small-svgrepo-com.svg'}
+                  onClick={toggleEvidenceVisibility()}
+                  role="button" 
+                  alt={''} 
+                  width={20} height={20}
+                  />
+                  Evidence
                 </td>
               </tr>
             </thead>
@@ -208,6 +223,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                 <th hidden={methodVisibility}>SE Method</th>
                 <th hidden={claimVisibility}>Claim</th>
                 <th hidden={summaryVisibility}>Summary</th>
+                <th hidden={evidenceVisibility}>Evidence</th>
               </tr>
             </thead>
             <tbody>
@@ -219,6 +235,7 @@ const Page = ({ searchParams, }: { searchParams: { seSelection: string;claimSele
                   <td hidden={methodVisibility}>{article.seMethod}</td>
                   <td hidden={claimVisibility}>{article.claim}</td>
                   <td hidden={summaryVisibility}>{article.summary}</td>
+                  <td hidden={evidenceVisibility}>{article.evidence}</td>
                 </tr>
               ))}
             </tbody>
