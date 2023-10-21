@@ -79,6 +79,16 @@
     width: 100%;
 }
 
+.formTextArea {
+    resize: none;
+    width: 100%;
+    border: none;
+    justify-content: space-around;
+    padding: 15px 15px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
 .textFormWrapper{
     align-self: center;
     display: flex;
@@ -91,6 +101,7 @@
     width: 100%;
     border: none;
     justify-content: space-around;
+    padding: 15px 15px;
     border-radius: 10px;
     margin-bottom: 5px;
     height: 5vh;

@@ -63,11 +63,14 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
 
     /* ANALYSIS */
     const onChange = (e: React.ChangeEvent<any>) => {
-        if (e.target.name === "seMethod" || e.target.name === "claim") {
-            article = ({...article, [e.target.name]: e.target.value.toLowerCase()});
-        } else {
-            article = ({...article, [e.target.name]: e.target.value});
-        }
+        article = ({...article, [e.target.name]: e.target.value.toLowerCase()});
+        article = ({...article, [e.target.name]: e.target.value});
+    }
+
+    const handleSubmit = () => {
+        article.seMethod?.toLowerCase(); 
+        article.claim?.toLowerCase();
+        aSubmit?.(article);
     }
 
     return (
@@ -96,10 +99,10 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                     {article.comments
                         ?  <><div><h2 className={style.subHeading}>Comments:</h2> <p className={style.text}>{article.comments}</p></div></> 
                         :    null}
-                </div>
+                </div>       
 
             {moderation ? 
-                <>
+                <>       
                     <div className={style.checkBoxWrapper}>
                         <form onSubmit={ () => mSubmit?.(approved, article) }>
                             {critera.map((value, index) => {
@@ -125,25 +128,29 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                     </div>
                 </>
                 : null}
-                </div>
+                </div>               
+                
+                <br/>  
             
             {analysis ? 
                 <>
                     <div className={style.textFormWrapper}>
-                        <form id={`analysisForm-${index}`} onSubmit={ () => aSubmit?.(article) }>
+                        <form id={`analysisForm-${index}`} onSubmit={ handleSubmit }>
                             <div>
                                 <div className={style.input}>
                                     <label htmlFor={`summary-${index}`}><h2 className={style.subHeading}>Summary:</h2></label>
-                                    <input
-                                        type="text"
+                                    <textarea
                                         id={`summary-${index}`}
+                                        rows={5}
                                         name="summary"
                                         required={true}
                                         value={ article.summary }
                                         onChange={ onChange }
-                                        className={style.textInput}
+                                        className={style.formTextArea}
                                     />
                                 </div>
+
+                                <br/>
 
                                 <div className={style.input}>
                                     <label htmlFor={`method-${index}`}><h2 className={style.subHeading}>SE Method:</h2></label>
@@ -158,6 +165,8 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                                     />
                                 </div>
 
+                                <br/>
+
                                 <div className={style.input}> 
                                     <label htmlFor={`claim-${index}`}><h2 className={style.subHeading}>Claim:</h2></label>
                                     <input
@@ -170,6 +179,8 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                                         className={style.textInput}
                                     />
                                 </div>
+
+                                <br/>
 
                                 <div className={style.input}>
                                     <label htmlFor={`claim-${index}`}><h2 className={style.subHeading}>Evidence:</h2></label>
@@ -184,8 +195,13 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                                     />
                                 </div>
                             </div>
+
+                            <br/>
+                            
                             <input className="submit articleSubmitButton" type="submit" value="Submit Article"/>
                         </form>
+
+                        <br/>
                     </div>
                 </>
                 : null}

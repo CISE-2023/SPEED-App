@@ -15,8 +15,8 @@ export default function Home() {
                 Welcome to SPEED: Your Gateway to Evidence-Based Engineering. We&apos;re here to
                 make reliable research in software engineering easy to access. Think of us as
                 your friendly research library, where you can explore studies on various practices.
-                Whether you&paos;re a student, a researcher, or a practitioner, SPEED has you covered.
-                Curious about Test-Driven Development? Sarch and discover wht the studies say.
+                Whether you&apos;re a student, a researcher, or a practitioner, SPEED has you covered.
+                Curious about Test-Driven Development? Sarch and discover what the studies say.
                 Join us in making informed decisions, based on solid evidence. Right here at SPEED!
                 </p>
                     <button className={styles.button} onClick={() => {router.push("/search");}}>Search Here</button>
