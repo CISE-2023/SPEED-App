@@ -121,8 +121,8 @@ export default function ModerationPage() {
 
     return (
         <div className="pageAuto">
-            <div>
-                <h1 className={style.heading}>Moderate Articles:</h1>
+            <div className={style.pageContents}>
+                <h1 className="heading">MODERATE</h1>
                 {articlesList}
             </div>
         </div>
