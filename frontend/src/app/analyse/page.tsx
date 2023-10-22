@@ -53,12 +53,12 @@ export default function AnalysisPage() {
 
     return (
         <div>
-             <div className="pageAuto">
-            <div>
-                <h1 className={style.heading}>Analyse Articles:</h1>
-                {articlesList}
+            <div className="pageAuto">
+                <div className={style.pageContents}>
+                    <h1 className="heading">ANALYSE</h1>
+                    {articlesList}
+                </div>
             </div>
-        </div>
         </div>
     );
 }
