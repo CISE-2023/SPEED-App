@@ -201,10 +201,12 @@ export default function SubmitPage() {
                 onChange={onChange}
               />
             </div>
+            <div className={style.columnWrapper} style={{alignItems: "flex-end"}}>
             <input className="submit" type="submit" value="Submit Form" />
             {textEnabled 
               ? <span style={{color:"green"}}>&nbsp;<strong>Your new article has been successfully submitted!</strong></span>
               : null}
+            </div>
           </div>
         </form>
       </div>
