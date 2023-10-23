@@ -3,8 +3,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    background-color: rgba(56, 114, 157, .2);
-    border: solid 0.25px rgba(56, 113, 157, 0.584);
+    border: solid 0.5px rgba(15, 30, 42, 0.584);
     margin-top: 4vh;
     padding: 1vw;
     width: 90%;
@@ -23,7 +22,6 @@
 .heading {
     font-family: 'Inter';
     font-size: 50px;
-    margin-top: 5vh;
     color: #38729D;
     letter-spacing: 0.1em;
     font-weight: 500;
@@ -81,19 +79,19 @@
 .formTextArea {
     resize: none;
     width: 95%;
-    border: none;
     justify-content: space-around;
     padding: 15px 15px;
+    border: 1px solid #C4C9CF;
     border-radius: 10px;
     height: 15vh;
 }
 
 .textInput {
     width: 95%;
-    border: none;
     justify-content: space-around;
     padding: 15px 15px;
     border-radius: 10px;
+    border: 1px solid #C4C9CF;
     height: 5vh;
     margin-bottom: 2vh;
 }

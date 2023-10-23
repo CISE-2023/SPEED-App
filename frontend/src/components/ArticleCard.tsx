@@ -88,10 +88,10 @@ const ArticleCard = ({article, index, moderation, analysis, mSubmit, aSubmit}: P
                 <p className={style.text}>{article.source}</p>
                 <h2 className={style.subHeading}>publication:</h2>
                 <p className={style.text}>{article.publication}</p>
-                <h2 className={style.subHeading}>Author(s):</h2>
-                <p className={style.text}>{article.author}</p>
             </div>
             <div className={style.columnWrapper}>
+                <h2 className={style.subHeading}>Author(s):</h2>
+                <p className={style.text}>{article.author}</p>
                 {article.volume 
                     ?  <><div><h2 className={style.subHeading}>Volume:</h2> <p className={style.text}>{article.volume}</p></div></> 
                     : null}
