@@ -7,7 +7,7 @@ async function bootstrap() {
   app.enableCors({ 
     origin: true, 
     credentials: true,
-    methods: ["POST", "GET", "PUT", "DELETE, OPTIONS"]
+    methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"]
   });
 
   await app.listen(3001);
